@@ -5,6 +5,6 @@ Name | Student ID
 ---- | ----------
 Razvan Soos | 
 Gabriel Ribeiro | 
-Rezhnd Raveendrakumar | 
+Rezhnd Raveendrakumar | 40028067
 Mounir Maarabani | 
 Paul Lane | 40004766  
