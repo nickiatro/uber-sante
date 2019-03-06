@@ -13,3 +13,6 @@ yarn-error.log
 
 # PHP Coding Standards Fixer
 .php_cs.cache
+
+# PhpStorm
+.idea/
