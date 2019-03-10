@@ -16,3 +16,13 @@ declare(strict_types=1);
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::view('/admin', 'admin');
+Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
