@@ -34,10 +34,9 @@
                 position: relative;
             }
 
-            .top-right {
+            .top-center {
                 position: absolute;
-                right: 10px;
-                top: 18px;
+                height: 70%;
             }
 
             .content {
@@ -50,8 +49,8 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
+                padding: 0 30px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -66,9 +65,21 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                <div class="top-center links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+
+
+
+
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -81,17 +92,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    SOEN 344 Team 20 - Uber Santé
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    @if (Auth::check())
+
+                        @if (Auth::user()->admin_privilege == "1")
+
+                         <a href="/admin">Admin panel</a>
+
+                        @endif
+                        @endif
                 </div>
             </div>
         </div>
