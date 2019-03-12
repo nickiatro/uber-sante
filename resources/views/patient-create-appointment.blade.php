@@ -19,14 +19,14 @@
 <body>
 <?php
 $patientErr = $doctorErr = $typeErr = $dateErr = "";
-$patientId = $doctorId = $type = $date = "";
+$patientId = $doctorId = $walkIn = $annual  = $date = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["doctor-id"])) {
         $doctorErr = "Doctor ID is required";
     } else {
         $doctorId = test_input($_POST["doctor-id"]);
-        if (!preg_match("/[0-9]/",$doctorId)) {
+        if (!preg_match("/^[0-9][0-9]*$/",$doctorId)) {
             $doctorErr = "Please enter a valid ID";
         }
     }
@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patientErr = "Patient ID is required";
     } else {
         $patientId = test_input($_POST["patient-id"]);
-        if (!preg_match("/[0-9]/",$patientId)) {
+        if (!preg_match("/^[0-9][0-9]*$/",$patientId)) {
             $patientErr = "Please enter a valid ID";
         }
     }
@@ -48,8 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (($_POST["appointment-type"]) == "null") {
         $typeErr = "Please select a type";
-    } else {
-        $type = test_input($_POST["appointment-type"]);
+    }
+    else if (($_POST["appointment-type"]) == "walk-in") {
+        $walkIn = "selected";
+    }
+    else if (($_POST["appointment-type"]) == "annual-checkup") {
+        $annual = "selected";
     }
 }
 
@@ -85,10 +89,10 @@ function test_input($data) {
         </div>
         <div class="form-group">
           <label for="appointment-type">Select the Appointment Type</label>
-          <select class="form-control" name="appointment-type" value="<?php echo $type;?>"required>
+          <select class="form-control" name="appointment-type" required>
               <option value="null">Select Type</option>
-              <option value="walk-in">Walk-In Clinic (20 minutes)</option>
-              <option value= "annual-checkup">Annual Checkup (60 minutes)</option>
+              <option value="walk-in" <?php echo $walkIn ?>>Walk-In Clinic (20 minutes)</option>
+              <option value= "annual-checkup" <?php echo $annual?>>Annual Checkup (60 minutes)</option>
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
