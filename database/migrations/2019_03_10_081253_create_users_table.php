@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('healthCard')->unique();
-            $table->string('birthday');
+            //$table->string('birthday');
             $table->string('gender');
             $table->string('phone');
             $table->string('country');
@@ -37,7 +37,7 @@ class CreateUsersTable extends Migration
             'email' => "admin@outlook.com",
             'password' => "admin12345",
             'healthCard' => "adminadmin",
-            'birthday' => "01/01/2019",
+            //'birthday' => "01/01/2019",
             'gender' => "other",
             'phone' => "1010101010",
             'country' => "Canada",
