@@ -75,7 +75,7 @@ function test_input($data) {
         </div>
         <div class="form-group">
             <label for="date">Doctor ID</label>
-            <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>"required>
+            <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>" required>
             <span class="error" style="color: red;"><?php echo $doctorErr;?></span>
         </div>
         <div class="form-group">
