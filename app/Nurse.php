@@ -15,7 +15,7 @@ class Nurse extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'accessId', 'password',
+        'accessId', 'password'
     ];
 
     /**
