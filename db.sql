@@ -41,3 +41,45 @@ CREATE TABLE `clinic` (
   `phone` varchar(30) NOT NULL,
   `contact` bigint(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- create table `appointment`
+--
+
+CREATE TABLE `appointment` (
+  `username` varchar(30) NOT NULL,
+  `fullName` varchar(30) NOT NULL,
+  `Gender` varchar(10) NOT NULL,
+  `clinic_id` int(5) NOT NULL,
+  `doc_id` int(5) NOT NULL,
+  `appoint_date` date NOT NULL,
+  `starttime` datetime NOT NULL,
+  `endtime` datetime NOT NULL,
+  `appoint_status` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+--
+-- create table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `fullName` varchar(30) NOT NULL,
+  `gender` varchar(30) NOT NULL,
+  `dob` date NOT NULL,
+  `phone` bigint(20) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `city` varchar(30) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- create table `clinic_admin`
+--
+
+CREATE TABLE `manager_clinic` (
+  `clinic_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
