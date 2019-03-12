@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Account Loging</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+ <meta charset="utf-8">
+    <title>Account Welcome Page</title>
 </head>
 <body>
-    <h1>Account</h1>
+    <div class="container-fluid">
+    <a class="btn btn-primary" href="patient-create-appointment.blade.php" role="button">Create Appointements</a>
+    <a class="btn btn-primary" href="" role="button">View Appointments</a>
+    <a class="btn btn-primary" href="" role="button">Add To Cart</a>
+    </div>
+    <div>
+    <h1>Welcome to the Account Page</h1>
+    </div>
 </body>
 </html>
