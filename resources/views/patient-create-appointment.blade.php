@@ -84,7 +84,7 @@ function test_input($data) {
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>
-            <input class="form-control" type="date" name="date" value="<?php echo $date;?>" required>
+            <input class="form-control" type="date" id="date" name="date" value="<?php echo $date;?>" required>
             <span class="error" style="color:red;"><?php echo $dateErr;?></span>
         </div>
         <div class="form-group">
