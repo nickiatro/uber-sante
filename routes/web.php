@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::view('/admin', 'admin');
+Route::view('/welcome', 'welcome');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
 
