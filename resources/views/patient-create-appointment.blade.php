@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+    <title>Create Appointment</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
@@ -96,7 +97,7 @@ function test_input($data) {
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
-        <input type="submit" id="button" class="btn" value="Submit">
+        <input type="submit" id="button" class="btn btn-primary" value="Submit">
     </form>
 
 </div>
