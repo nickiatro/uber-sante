@@ -33,9 +33,9 @@ class CreateUsersTable extends Migration
         });
 
         DB::table('users')->insert([
-            'id' => 1100,
-            'email' => "admin@admin.com",
-            'password' => "adminadmin",
+            'id' => 120,
+            'email' => "admin@outlook.com",
+            'password' => "admin12345",
             'healthCard' => "adminadmin",
             'birthday' => "01/01/2019",
             'gender' => "other",
