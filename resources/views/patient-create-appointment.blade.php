@@ -84,15 +84,15 @@ function test_input($data) {
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>
-            <input class="form-control" type="date" name="date" value="<?php echo $date; ?>" required>
+            <input class="form-control" type="date" name="date" value="<?php echo $date;?>" required>
             <span class="error" style="color:red;"><?php echo $dateErr;?></span>
         </div>
         <div class="form-group">
           <label for="appointment-type">Select the Appointment Type</label>
           <select class="form-control" name="appointment-type" required>
               <option value="null">Select Type</option>
-              <option value="walk-in" <?php echo $walkIn ?>>Walk-In Clinic (20 minutes)</option>
-              <option value= "annual-checkup" <?php echo $annual?>>Annual Checkup (60 minutes)</option>
+              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Clinic (20 minutes)</option>
+              <option value= "annual-checkup" <?php echo $annual;?>>Annual Checkup (60 minutes)</option>
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
