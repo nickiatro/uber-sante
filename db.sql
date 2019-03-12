@@ -79,7 +79,7 @@ CREATE TABLE `admin` (
 -- create table `clinic_admin`
 --
 
-CREATE TABLE `manager_clinic` (
+CREATE TABLE `admin_clinic` (
   `clinic_id` int(11) NOT NULL,
   `admin_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
