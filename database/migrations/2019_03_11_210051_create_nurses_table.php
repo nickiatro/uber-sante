@@ -23,26 +23,6 @@ class CreateNursesTable extends Migration
             $table->integer('logged_in')->default(0);
         });
 
-        DB::table('nurses')->insert([
-            'id' => 300,
-            'accessId' => 'nurse123',
-            'password' => 'nursePassword',
-            'admin_privilege' => 0,
-        ]);
-
-        DB::table('nurses')->insert([
-            'id' => 400,
-            'accessId' => 'nurse678',
-            'password' => 'nursePassword2',
-            'admin_privilege' => 0,
-        ]);
-
-        DB::table('nurses')->insert([
-            'id' => 500,
-            'accessId' => 'nurse543',
-            'password' => 'nursePassword31',
-            'admin_privilege' => 0,
-        ]);
     }
 
     /**
