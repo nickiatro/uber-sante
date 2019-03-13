@@ -26,6 +26,7 @@ Route::view('/addToCart', 'addToCart');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::view('/view', 'view');
+Route::view('/help', 'help');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
