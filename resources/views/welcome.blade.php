@@ -35,12 +35,16 @@
             }
 
             .top-center {
+		text-align: center;
                 position: absolute;
                 height: 70%;
+		width:100%;
             }
  	    .middle-center {
+		text-align: center;
                 position: relative;
                 height: 70%;
+		width:100%;
             }
 
             .content {
@@ -52,6 +56,7 @@
             }
 
             .links > a {
+		text-align: center;
                 color: #636b6f;
                 padding: 0 30px;
                 font-size: 20px;
@@ -63,9 +68,10 @@
             }
 
             .links > a.b {
+		text-align: center;
                 color: #636b6f;
                 padding: 0 30px;
-                font-size: 15px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -96,23 +102,37 @@
                                 </form>
 
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <div class="links">
+				<a href="{{ route('login') }}">Login</a>
+			</div>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-			<div class="middle-center links">
-                            <a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
 
-                            <a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
-			</div>
+                        <div class="links"><a href="{{ route('register') }}">Register</a></div>
+				<div class="middle-center links">
+                           		<div class="links">
+						<a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
+					</div>
+                            		<div class="links">
+						<a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
+					</div>
+				</div>
                         @endif
                     @endauth
 
 			<div class="top-center links">
-                		<div class="links"><a href="patient-create-appointment"> Create Appointment</a></div>
-				<div class="links"><a href="addToCart"> Add to Cart</a></div>
-                		<div class="links"><a href="view">My Appointments</a></div>
-               			<div class="links"><a href="help">Help</a></div>
+                		<div class="links">
+					<a href="patient-create-appointment"> Create Appointment</a>
+				</div>
+				<div class="links">
+					<a href="addToCart"> Add to Cart</a>
+				</div>
+                		<div class="links">
+					<a href="view">My Appointments</a>
+				</div>
+               			<div class="links">
+					<a href="help">Help</a>
+				</div>
 			</div>
                 </div>
 
