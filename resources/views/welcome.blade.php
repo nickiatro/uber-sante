@@ -68,9 +68,11 @@
 
             @if (Route::has('login'))
                 <div class="top-center links">
+
                 <a href="patient-create-appointment"> Create Appointment</a>
                 <a href="addToCart"> Add to Cart</a>
-            
+                <a href="view">My Appointments</a>
+
                     @auth
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
