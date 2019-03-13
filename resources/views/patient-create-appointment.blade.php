@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $doctorId = test_input($_POST["doctor-id"]);
         if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
-            $doctorErr = "Please enter a valid ID";
+            $doctorErr = "Please enter a valid ID (e.g., 2345679)";
         }
     }
 
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $patientId = test_input($_POST["patient-id"]);
         if (!preg_match("/^[0-9][0-9]*$/",$patientId)) {
-            $patientErr = "Please enter a valid ID";
+            $patientErr = "Please enter a valid ID (e.g., LOUX 0803 2317)";
         }
     }
 
