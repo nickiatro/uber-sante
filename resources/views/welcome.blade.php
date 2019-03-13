@@ -57,6 +57,26 @@
                 text-transform: uppercase;
             }
 
+            .links > a {
+                color: #636b6f;
+                padding: 0 30px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .links > a.b {
+                color: #636b6f;
+                padding: 0 30px;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -90,6 +110,10 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
+
+                            <a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
+
+                            <a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
                         @endif
                     @endauth
                 </div>
