@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+Route::view('/payment','payment');
 Route::view('/admin', 'admin');
 Route::view('/welcome', 'welcome');
 Route::view('/patient-create-appointment','patient-create-appointment');
