@@ -123,10 +123,5 @@ function test_input($data) {
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
 
-    document.getElementById("button").addEventListener("click", function(){
-        alert(document.getElementById("appointment-type").value);
-
-    });
-
 </script>
 </html>
