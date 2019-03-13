@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $doctorErr = "Doctor ID is required";
     } else {
         $doctorId = test_input($_POST["doctor-id"]);
-        if (!preg_match("/^[0-9][0-9]*$/",$doctorId)) {
+        if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
             $doctorErr = "Please enter a valid ID";
         }
     }
