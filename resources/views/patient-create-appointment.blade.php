@@ -93,7 +93,7 @@ function test_input($data) {
         </div>
         <div class="form-group">
           <label for="appointment-type">Select the Appointment Type</label>
-          <select class="form-control" name="appointment-type" required>
+          <select class="form-control" id="appointment-type" name="appointment-type" required>
               <option value="null">Select Type</option>
               <option value="walk-in" <?php echo $walkIn;?>>Walk-In Clinic (20 minutes)</option>
               <option value= "annual-checkup" <?php echo $annual;?>>Annual Checkup (60 minutes)</option>
@@ -122,6 +122,7 @@ function test_input($data) {
     document.getElementById("date").setAttribute("min", today);
 
     document.getElementById("button").addEventListener("click", function(){
+        alert(document.getElementById("appointment-type").value);
 
     });
 
