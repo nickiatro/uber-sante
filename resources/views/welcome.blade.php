@@ -64,21 +64,24 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+       
+
             @if (Route::has('login'))
                 <div class="top-center links">
+                <a href="patient-create-appointment"> Create Appointment</a>
+                <a href="addToCart"> Add to Cart</a>
+            
                     @auth
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                                 </a>
+                                
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-
-
-
 
                     @else
                         <a href="{{ route('login') }}">Login</a>
@@ -107,5 +110,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>
