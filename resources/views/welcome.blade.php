@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -38,6 +38,10 @@
                 position: absolute;
                 height: 70%;
             }
+ 	    .middle-center {
+                position: relative;
+                height: 70%;
+            }
 
             .content {
                 text-align: center;
@@ -55,16 +59,7 @@
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
-            }
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 30px;
-                font-size: 20px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
             }
 
             .links > a.b {
@@ -88,14 +83,8 @@
 
             @if (Route::has('login'))
                 <div class="top-center links">
-
-                <a href="patient-create-appointment"> Create Appointment</a>
-                <a href="addToCart"> Add to Cart</a>
-                <a href="view">My Appointments</a>
-                <a href="help">Help</a>
-
                     @auth
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -111,13 +100,24 @@
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
-
+			<div class="middle-center links">
                             <a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
 
                             <a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
+			</div>
                         @endif
                     @endauth
+
+			<div class="top-center links">
+                		<div class="links"><a href="patient-create-appointment"> Create Appointment</a></div>
+				<div class="links"><a href="addToCart"> Add to Cart</a></div>
+                		<div class="links"><a href="view">My Appointments</a></div>
+               			<div class="links"><a href="help">Help</a></div>
+			</div>
                 </div>
+
+	
+
             @endif
 
             <div class="content">
