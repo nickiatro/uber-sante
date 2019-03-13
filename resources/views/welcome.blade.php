@@ -66,6 +66,7 @@
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-center links">
+                <a href="view">My Appointments</a>
                     @auth
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
