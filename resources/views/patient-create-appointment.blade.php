@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $doctorId = test_input($_POST["doctor-id"]);
         if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
-            $doctorErr = "Please enter a valid ID (e.g., 2345679)";
+            $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
         }
     }
 
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $patientId = test_input($_POST["patient-id"]);
         if (!preg_match("/^[0-9][0-9]*$/",$patientId)) {
-            $patientErr = "Please enter a valid ID (e.g., LOUX 0803 2317)";
+            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
 
@@ -79,12 +79,12 @@ function test_input($data) {
 
     <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="form-group">
-            <label for="date">Patient ID</label>
+            <label for="date">Patient Health Card Number</label>
             <input class="form-control" type="text" name="patient-id" value="<?php echo $patientId;?>" required>
             <span class="error" style="color: red;"><?php echo $patientErr;?></span>
         </div>
         <div class="form-group">
-            <label for="date">Doctor ID</label>
+            <label for="date">Physician Permit Number</label>
             <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>" required>
             <span class="error" style="color: red;"><?php echo $doctorErr;?></span>
         </div>
