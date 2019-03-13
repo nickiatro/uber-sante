@@ -22,7 +22,10 @@ Auth::routes();
 Route::view('/admin', 'admin');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('createPhysician', 'Auth\CreatePhysicianController@showcreatePhysicianForm')->name('createPhysician');
+Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
+
+Route::get('createNurse', 'Auth\CreateNurseController@showcreateNurseForm')->name('createNurse');
+Route::post('createNurse', 'Auth\CreateNurseController@register');
