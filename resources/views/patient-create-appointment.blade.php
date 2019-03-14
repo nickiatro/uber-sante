@@ -69,6 +69,15 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+$visible = "display:none;";
+$times = "";
+
+if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == ""))
+    {
+        $visible = "";
+    }
+
 ?>
 
 <h2 id="header" class="text-center" style="padding-bottom: 5%;">
@@ -103,8 +112,13 @@ function test_input($data) {
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
-        <input type="submit" id="button" class="btn btn-primary" value="Submit">
+        <input type="submit" id="button" class="btn btn-primary" value="Search">
     </form>
+    <div class="col-lg-4 col-lg-offset-4" style="<?php echo $visible;?>">
+        <select class="form-control">
+            <?php echo $times?>
+        </select>
+    </div>
 
 </div>
 
@@ -123,6 +137,9 @@ function test_input($data) {
 
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
+    document.getElementById("submit").addEventListener("onclick", function() {
+
+    })
 
 </script>
 </html>
