@@ -38,7 +38,7 @@ Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
 Route::get('createNurse', 'Auth\CreateNurseController@showcreateNurseForm')->name('createNurse');
 Route::post('createNurse', 'Auth\CreateNurseController@register');
 
-Route::resource('appointments','AppointmentController');
+Route::resource('appointments', 'AppointmentController')->only(['store', 'show','update','destroy']);
 
 Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
