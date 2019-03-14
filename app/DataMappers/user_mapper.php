@@ -15,6 +15,7 @@ class user_mapper{
     ['email' =>  $user->email,
     'password' => $user->password,
     'healthCard' => $user->healthCard,
+    'birthday' => $user->birthday,
     'gender' => $user->gender,
     'phone' => $user->phone,
     'country' => $user->country,
