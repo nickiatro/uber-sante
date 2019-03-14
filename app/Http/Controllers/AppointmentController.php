@@ -12,7 +12,7 @@ class AppointmentController extends Controller
 
     /**
      * Store a newly created appointment in storage.
-     *
+     * @param  Request $request
      * @return Response
      */
     public function store(Request $request)
@@ -52,7 +52,12 @@ class AppointmentController extends Controller
      * Update the specified appointment in storage.
      *
      * @param  int  $id
-	 * TO ADD OTHER VARS
+     * @param  int  $clinic_id
+     * @param  dateTime  $start_time
+     * @param  int  $duration
+     * @param  int  $patient_id
+     * @param  int  $physician_id
+     * @param  int  $room_id
      * @return Response
      */
     public function update($id, $clinic_id, $start_time, $duration, $patient_id, $physician_id, $room_id)
