@@ -11,7 +11,7 @@
     <div class="container-fluid">
     <a class="btn btn-primary" href="patient-create-appointment.blade.php" role="button">Create Appointements</a>
     <a class="btn btn-primary" href="" role="button">View Appointments</a>
-    <a class="btn btn-primary" href="" role="button">Add To Cart</a>
+    <a class="btn btn-primary" href="addToCart.blade.php" role="button">Add To Cart</a>
     </div>
     <div>
     <h1>Welcome to the Account Page</h1>

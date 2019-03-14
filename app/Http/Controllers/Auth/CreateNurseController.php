@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Nurse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\DB;
-use App\DataMappers\user_mapper;
+use App\DataMappers\nurse_mapper;
 
-class RegisterController extends Controller
+class CreateNurseController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -26,6 +26,11 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
+
+    public function showCreateNurseForm()
+    {
+        return view('auth.createNurse');
+    }
 
     /**
      * Where to redirect users after registration.
@@ -53,17 +58,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|string|email|max:255|unique:users',
+            'accessId' => 'required|regex:/^[a-zA-Z]{3}\d{5}+$/|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'healthCard' => 'required|regex:/^[A-Z]{4}\s\d{4}\s\d{4}+$/|unique:users',
-            'birthday' => 'required|digits:6',
-            'gender' => 'required|string|max:255',
-            'phone' => 'required|digits:10',
-            'country' => 'required|string|max:255',
-            'province' => 'required|string|max:255',
-            'postalCode' => 'required|string|max:255',
-            'city' => 'required|string|max:255',
-            'street' => 'required|string|max:255',
         ]);
     }
 
@@ -71,26 +67,17 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Nurse
      */
     protected function create(array $data)
     {
-            $user = new User;
-            $user -> email = $data['email'];
+            $user = new Nurse;
+            $user -> accessId = $data['accessId'];
             $user -> password = Hash::make($data['password']);
-            $user -> healthCard = $data['healthCard'];
-            $user -> birthday = $data['birthday'];
-            $user -> gender = $data['gender'];
-            $user -> phone = $data['phone'];
-            $user -> country = $data['country'];
-            $user -> province = $data['province'];
-            $user -> postalCode = $data['postalCode'];
-            $user -> city = $data['city'];
-            $user -> street = $data['street'];
-            $user -> admin_privilege = 0;
+            $user -> admin_privilege = 1;
 
-            $uMap = new user_mapper();
-            $uMap->registerUser($user);
+            $nMap = new nurse_mapper();
+            $nMap->registerNurse($user);
 
             return $user;
 

@@ -4,25 +4,27 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNursesTable extends Migration
+class CreateRoomsTable extends Migration
 {
-    /*
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('nurses', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('accessId')->unique();
-            $table->string('password');
+            $table->integer('clinic_id');
             $table->timestamps();
-            $table->rememberToken();
-            $table->integer('admin_privilege')->default(0);
-            $table->integer('logged_in')->default(0);
         });
 
+        for ($i = 0; $i < 5; ++$i) // Create the five medical rooms
+        {
+            DB::table('rooms')->insert([
+                "clinic_id" => 0
+            ]);
+        }
     }
 
     /**
@@ -32,6 +34,6 @@ class CreateNursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nurses');
+        Schema::dropIfExists('rooms');
     }
 }

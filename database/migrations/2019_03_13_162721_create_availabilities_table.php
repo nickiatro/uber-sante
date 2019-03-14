@@ -4,25 +4,24 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNursesTable extends Migration
+class CreateAvailabilitiesTable extends Migration
 {
-    /*
+    /**
      * Run the migrations.
      *
      * @return void
      */
     public function up()
     {
-        Schema::create('nurses', function (Blueprint $table) {
+        Schema::create('availabilities', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('accessId')->unique();
-            $table->string('password');
+            $table->integer('physician_id');
+            $table->dateTime('start_time');
+            $table->integer('duration');
             $table->timestamps();
-            $table->rememberToken();
-            $table->integer('admin_privilege')->default(0);
-            $table->integer('logged_in')->default(0);
-        });
 
+            $table->foreign('physician_id')->references('id')->on('physicians');
+        });
     }
 
     /**
@@ -32,6 +31,6 @@ class CreateNursesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nurses');
+        Schema::dropIfExists('availabilities');
     }
 }

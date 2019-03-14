@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -35,8 +35,16 @@
             }
 
             .top-center {
+		text-align: center;
                 position: absolute;
                 height: 70%;
+		width:100%;
+            }
+ 	    .middle-center {
+		text-align: center;
+                position: relative;
+                height: 70%;
+		width:100%;
             }
 
             .content {
@@ -48,6 +56,19 @@
             }
 
             .links > a {
+		text-align: center;
+                color: #636b6f;
+                padding: 0 30px;
+                font-size: 20px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+
+            }
+
+            .links > a.b {
+		text-align: center;
                 color: #636b6f;
                 padding: 0 30px;
                 font-size: 20px;
@@ -68,14 +89,8 @@
 
             @if (Route::has('login'))
                 <div class="top-center links">
-
-                <a href="patient-create-appointment"> Create Appointment</a>
-                <a href="addToCart"> Add to Cart</a>
-                <a href="view">My Appointments</a>
-                <a href="help">Help</a>
-
                     @auth
-                    <a class="dropdown-item" href="{{ route('logout') }}"
+                <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -87,13 +102,42 @@
                                 </form>
 
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <div class="links">
+				<a href="{{ route('login') }}">Login</a>
+			</div>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+
+                        <div class="links"><a href="{{ route('register') }}">Register</a></div>
+				<div class="middle-center links">
+                           		<div class="links">
+						<a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
+					</div>
+                            		<div class="links">
+						<a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
+					</div>
+				</div>
                         @endif
                     @endauth
+
+			<div class="top-center links">
+                		<div class="links">
+					<a href="patient-create-appointment"> Create Appointment</a>
+				</div>
+				<div class="links">
+					<a href="addToCart"> Add to Cart</a>
+				</div>
+                		<div class="links">
+					<a href="view">My Appointments</a>
+				</div>
+               			<div class="links">
+					<a href="help">Help</a>
+				</div>
+			</div>
                 </div>
+
+	
+
             @endif
 
             <div class="content">
@@ -112,7 +156,6 @@
                         @endif
                 </div>
             </div>
-        </div>
-        
+        </div>        
     </body>
 </html>
