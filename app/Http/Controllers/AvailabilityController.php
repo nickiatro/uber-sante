@@ -18,27 +18,22 @@ class AvailabilityController extends Controller
     public function store(Request $request)
     {       
         $availability = new Availability;
-        $availability->duration = $request->duration;
-        $availability->patient_id = $request->patient_id;
         $availability->physician_id = $request->physician_id;
+        $availability->start_time = $request->start_time;
+        $availability->patient_id = $request->patient_id;
         $availability->save();
     }
 
     /**
      * Display the specified availability.
      *
-     * @param  int  $id
+     * @param  date  $date
      * @return Response
      */
-    public function show($id)
+    public function show($date)
     {
-		$availability = Availability::find($id);
-		$collection = collect([
-			'duration' => $availability->duration 
-			'patient_id' => $availability->patient_id 
-			'physician_id' => $availability->physician_id 
-		]);		
-		return $collection;
+		$availability = DB::select('select * from availability where date between $date and '$date 23:59:59 '', [1]);
+		return $availability;
     }
 
 
@@ -46,17 +41,17 @@ class AvailabilityController extends Controller
      * Update the specified availability in storage.
      *
      * @param  int  $id
-     * @param  int  $duration
-     * @param  int  $patient_id
      * @param  int  $physician_id
+     * @param  dateTime  $start_time
+     * @param  int  $duration
      * @return Response
      */
-    public function update($id, $clinic_id, $start_time, $duration, $patient_id, $physician_id, $room_id)
+    public function update($id, $physician_id, $start_time, $duration)
     {
 		$availability = Availability::find($id);
-        $availability->duration = $duration;
-        $availability->patient_id = $patient_id;
         $availability->physician_id = $physician_id;
+        $availability->start_time = $start_time;
+        $availability->patient_id = $patient_id;
         $availability->save();
     }
 
