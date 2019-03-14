@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patientErr = "Patient ID is required";
     } else {
         $patientId = test_input($_POST["patient-id"]);
-        if (!preg_match("/^[0-9][0-9]*$/",$patientId)) {
-            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
+        if (!preg_match("/^[a-zA-Z]{4}\d{8}+$/",$patientId)) {
+            $patientErr = "Please enter a valid Health Card Number without spaces <br/>(e.g., LOUX08032317)";
         }
     }
 
@@ -77,7 +77,8 @@ function test_input($data) {
 
 <div class="col-lg-4 col-lg-offset-4">
 
-    <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method= "post" action="{{route('patient-create-appointment')}}">
+        @csrf
         <div class="form-group">
             <label for="date">Patient Health Card Number</label>
             <input class="form-control" type="text" name="patient-id" value="<?php echo $patientId;?>" required>

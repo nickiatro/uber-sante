@@ -38,3 +38,7 @@ Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
 
 Route::get('createNurse', 'Auth\CreateNurseController@showcreateNurseForm')->name('createNurse');
 Route::post('createNurse', 'Auth\CreateNurseController@register');
+
+Route::post('patient-create-appointment', function() {
+    return view('patient-create-appointment');
+})->name('patient-create-appointment');
