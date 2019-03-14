@@ -41,8 +41,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patientErr = "Patient ID is required";
     } else {
         $patientId = test_input($_POST["patient-id"]);
-        if (!preg_match("/^[a-zA-Z]{4}\d{8}+$/",$patientId)) {
-            $patientErr = "Please enter a valid Health Card Number without spaces <br/>(e.g., LOUX08032317)";
+        if (!preg_match("/^[A-Z]{4}\s\d{4}\s\d{4}+$/",$patientId)) {
+            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
 
@@ -107,7 +107,7 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
           <label for="appointment-type">Select the Appointment Type</label>
           <select class="form-control" id="appointment-type" name="appointment-type" required>
               <option value="null">Select Type</option>
-              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Clinic (20 minutes)</option>
+              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Visit (20 minutes)</option>
               <option value= "annual-checkup" <?php echo $annual;?>>Annual Checkup (60 minutes)</option>
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
