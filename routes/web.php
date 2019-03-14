@@ -29,3 +29,7 @@ Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
 
 Route::get('createNurse', 'Auth\CreateNurseController@showcreateNurseForm')->name('createNurse');
 Route::post('createNurse', 'Auth\CreateNurseController@register');
+
+Route::resource('appointments', 'AppointmentController')->only([
+    'show', 'store', 'update', destroy'
+]);
