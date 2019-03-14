@@ -114,8 +114,9 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
         </div>
         <input type="submit" id="button" class="btn btn-primary" value="Search">
     </form>
-    <div class="col-lg-4 col-lg-offset-4" style="<?php echo $visible;?>">
-        <select class="form-control">
+    <div class="col-lg-6 col-lg-offset-3" style="<?php echo $visible;?>">
+        <label for="times">Select Appointment Time</label>
+        <select id="times" name="times" class="form-control">
             <?php echo $times?>
         </select>
     </div>
