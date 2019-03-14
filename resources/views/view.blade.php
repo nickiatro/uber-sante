@@ -22,14 +22,24 @@
                 <th>Modify/Delete an Appointment</th>
             </tr>
                 <tr>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
-                    <td>data</td>
+                
+                @foreach($appointment_list as $row)
+                <tr>
+                    <td>{{$row['name']}}</td>
+                    <td>{{$row['date']}}</td>
+                    <td>{{$row['starttime']}}</td>
+                    <td>{{$row['endtime']}}</td>
+                    <td>{{$row['doctor']}}</td>
+                    <td>{{$row['clinic']}}</td>
+                    <td>{{$row['address']}}</td>
+                    <td>{{$row['Comments']}}</td>
+                    <td>
+                    <button class="btn btn-primary">Modify</button>
+                    <button class="btn btn-primary">Cancel</button>
+                    </td>
+                </tr>
+                @endforeach
+                
                     <td><button class="btn btn-primary">Modify</button>
                     <button class="btn btn-primary">Cancel</button></td>
                 </tr>
