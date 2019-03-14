@@ -16,8 +16,7 @@ class AppointmentController extends Controller
      * @return Response
      */
     public function store(Request $request)
-    {
-       
+    {       
         $appointment = new Appointment;
         $appointment->clinic_id = $request->clinic_id;
         $appointment->start_time = $request->start_time;
@@ -37,7 +36,15 @@ class AppointmentController extends Controller
     public function show($id)
     {
 		$appointment = Appointment::find($id);
-		return View::make('appointments.show', compact('appointment')); 
+		$collection = collect([
+			'clinic_id' => $appointment->clinic_id
+			'start_time' => $appointment->start_time 
+			'duration' => $appointment->duration 
+			'patient_id' => $appointment->patient_id 
+			'physician_id' => $appointment->physician_id 
+			'room_id' => $appointment->room_id		
+		]);		
+		return $collection;
     }
 
 
