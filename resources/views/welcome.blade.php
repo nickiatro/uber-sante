@@ -101,6 +101,18 @@
                                     @csrf
                                 </form>
 
+			<div class="middle-center links"></div>
+
+			<div class="links">
+				<a href="patient-create-appointment"> Book Appointment</a>
+			</div>
+			<div class="links">
+				<a href="addToCart"> Add to Cart</a>
+			</div>
+                	<div class="links">
+				<a href="view">My Appointments</a>
+			</div>
+
                     @else
                         <div class="links">
 				<a href="{{ route('login') }}">Login</a>
@@ -121,15 +133,7 @@
                     @endauth
 
 			<div class="top-center links">
-                		<div class="links">
-					<a href="patient-create-appointment"> Create Appointment</a>
-				</div>
-				<div class="links">
-					<a href="addToCart"> Add to Cart</a>
-				</div>
-                		<div class="links">
-					<a href="view">My Appointments</a>
-				</div>
+
                			<div class="links">
 					<a href="help">Help</a>
 				</div>

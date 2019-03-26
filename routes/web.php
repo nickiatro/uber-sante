@@ -35,6 +35,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('createPhysician', 'Auth\CreatePhysicianController@showcreatePhysicianForm')->name('createPhysician');
 Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
 
-
 Route::get('createNurse', 'Auth\CreateNurseController@showcreateNurseForm')->name('createNurse');
 Route::post('createNurse', 'Auth\CreateNurseController@register');
+
+Route::resource('appointments', 'AppointmentController')->only(['store', 'show','update','destroy']);
+Route::resource('cart_appointments', 'CartAppointmentController')->only(['store', 'show','update','destroy']);
+Route::resource('availability', 'AvailabilityController')->only(['store', 'show','update','destroy']);
+Route::resource('rooms', 'RoomController')->only(['store', 'show','update','destroy']);
+
+Route::post('patient-create-appointment', function() {
+    return view('patient-create-appointment');
+})->name('patient-create-appointment');

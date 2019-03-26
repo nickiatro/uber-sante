@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $patientErr = "Patient ID is required";
     } else {
         $patientId = test_input($_POST["patient-id"]);
-        if (!preg_match("/^[0-9][0-9]*$/",$patientId)) {
+        if (!preg_match("/^[A-Z]{4}\s\d{4}\s\d{4}+$/",$patientId)) {
             $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
@@ -69,6 +69,15 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+$visible = "display:none;";
+$times = "";
+
+if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == ""))
+    {
+        $visible = "";
+    }
+
 ?>
 
 <h2 id="header" class="text-center" style="padding-bottom: 5%;">
@@ -77,7 +86,8 @@ function test_input($data) {
 
 <div class="col-lg-4 col-lg-offset-4">
 
-    <form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+    <form method= "post" action="{{route('patient-create-appointment')}}">
+        @csrf
         <div class="form-group">
             <label for="date">Patient Health Card Number</label>
             <input class="form-control" type="text" name="patient-id" value="<?php echo $patientId;?>" required>
@@ -97,13 +107,19 @@ function test_input($data) {
           <label for="appointment-type">Select the Appointment Type</label>
           <select class="form-control" id="appointment-type" name="appointment-type" required>
               <option value="null">Select Type</option>
-              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Clinic (20 minutes)</option>
+              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Visit (20 minutes)</option>
               <option value= "annual-checkup" <?php echo $annual;?>>Annual Checkup (60 minutes)</option>
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
-        <input type="submit" id="button" class="btn btn-primary" value="Submit">
+        <input type="submit" id="button" class="btn btn-primary" value="Search">
     </form>
+    <div class="col-lg-6 col-lg-offset-3" style="<?php echo $visible;?>">
+        <label for="times">Select Appointment Time</label>
+        <select id="times" name="times" class="form-control">
+            <?php echo $times?>
+        </select>
+    </div>
 
 </div>
 
@@ -122,6 +138,9 @@ function test_input($data) {
 
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
+    document.getElementById("submit").addEventListener("onclick", function() {
+
+    })
 
 </script>
 </html>
