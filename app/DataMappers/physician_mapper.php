@@ -16,6 +16,7 @@ class physician_mapper{
     'firstName' =>  $user->firstName,
     'lastName' => $user->lastName,
     'physicianNumber' => $user->physicianNumber,
+    'email' => $user->email,
     'password' => $user->password,
     'specialty' => $user->specialty,
     'city' => $user->city,

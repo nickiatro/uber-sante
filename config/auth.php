@@ -47,6 +47,16 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'physician'=> [
+            'driver'=>'session',
+            'provider'=>'physicians'
+        ],
+
+        'nurse'=> [
+            'driver'=>'session',
+            'provider'=>'nurses'
+        ]
     ],
 
     /*
@@ -70,6 +80,16 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'physicians' => [
+            'driver' => 'eloquent',
+            'model' => App\Physician::class,
+        ],
+
+        'nurses' => [
+            'driver' => 'eloquent',
+            'model' => App\Nurse::class,
         ],
 
         // 'users' => [
@@ -96,6 +116,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'physicians' => [
+            'provider' => 'physicians',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ],
+
+        'nurses' => [
+            'provider' => 'nurses',
             'table' => 'password_resets',
             'expire' => 60,
         ],

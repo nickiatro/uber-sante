@@ -37,13 +37,13 @@ class AppointmentController extends Controller
     {
 		$appointment = Appointment::find($id);
 		$collection = collect([
-			'clinic_id' => $appointment->clinic_id
-			'start_time' => $appointment->start_time 
-			'duration' => $appointment->duration 
-			'patient_id' => $appointment->patient_id 
-			'physician_id' => $appointment->physician_id 
+			'clinic_id' => $appointment->clinic_id,
+			'start_time' => $appointment->start_time,
+			'duration' => $appointment->duration, 
+			'patient_id' => $appointment->patient_id,
+			'physician_id' => $appointment->physician_id, 
 			'room_id' => $appointment->room_id		
-		]);		
+		]);
 		return $collection;
     }
 

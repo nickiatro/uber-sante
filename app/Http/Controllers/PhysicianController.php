@@ -16,6 +16,7 @@ class PhysicianController extends Controller
      * @param  int  $id
      * @return Response
      */
+    
 
     public function update(Physician $user)
     {
@@ -29,5 +30,22 @@ class PhysicianController extends Controller
         }
 
     }
+
+    public function loginPhysician()
+    {
+        return view('physician.login');
+    }
+
+    public function home()
+  {
+    return view('physician');
+  }
+
+    public function logout()
+  {
+    Auth::guard('physician')->logout();
+
+    return redirect('/login/physician'); 
+  }
 
 } 

@@ -15,7 +15,7 @@ class Physician extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstName','lastName', 'physicianNumber', 'password', 'specialty', 'city'
+        'firstName','lastName', 'physicianNumber', 'email', 'password', 'specialty', 'city'
     ];
 
     /**

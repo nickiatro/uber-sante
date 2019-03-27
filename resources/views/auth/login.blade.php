@@ -81,18 +81,18 @@
                 <div class="card-header flip">{{ __('Login as a physician') }}</div>
 
                 <div class="card-body panel" style="display: none">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login.physician') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="physicianNumber" class="col-sm-4 col-form-label text-md-right">{{ __('Physician Permit Number') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Physician Permit Number') }}</label>
 
                             <div class="col-md-6">
-                                <input id="physicianNumber" type="physicianNumber" class="form-control{{ $errors->has('physicianNumber') ? ' is-invalid' : '' }}" name="physicianNumber" value="{{ old('physicianNumber') }}" required autofocus>
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('physicianNumber'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('physicianNumber') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -146,18 +146,18 @@
                 <div class="card-header flip">{{ __('Login as a nurse') }}</div>
 
                 <div class="card-body panel" style="display: none;">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login.nurse') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="accessId" class="col-sm-4 col-form-label text-md-right">{{ __('Access ID') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Access ID') }}</label>
 
                             <div class="col-md-6">
-                                <input id="accessId" type="accessId" class="form-control{{ $errors->has('accessId') ? ' is-invalid' : '' }}" name="accessId" value="{{ old('accessId') }}" required autofocus>
+                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
-                                @if ($errors->has('accessId'))
+                                @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('accessId') }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
