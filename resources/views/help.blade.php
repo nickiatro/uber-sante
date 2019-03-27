@@ -81,7 +81,7 @@
     </div>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
       <div class="card-body">
-      Unfortunately not, our service is currently only offered in the Greater Montreal Area.
+      Yes.
       </div>
     </div>
   </div>
