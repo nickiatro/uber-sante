@@ -61,6 +61,7 @@ class CreatePhysicianController extends Controller
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
             'physicianNumber' => 'required|digits:7|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'specialty' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -79,10 +80,11 @@ class CreatePhysicianController extends Controller
             $user -> firstName = $data['firstName'];
             $user -> lastName = $data['lastName'];
             $user -> physicianNumber = $data['physicianNumber'];
+            $user -> email = $data['email'];
             $user -> password = Hash::make($data['password']);
             $user -> specialty = $data['specialty'];
             $user -> city = $data['city'];
-            $user -> admin_privilege = 1;
+            $user -> admin_privilege = 0;
 
             $pMap = new physician_mapper();
             $pMap->registerPhysician($user);

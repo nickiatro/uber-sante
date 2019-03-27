@@ -18,6 +18,7 @@ class CreatePhysiciansTable extends Migration
             $table->string('firstName');
             $table->string('lastName');
             $table->string('physicianNumber')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->string('specialty');
             $table->string('city');

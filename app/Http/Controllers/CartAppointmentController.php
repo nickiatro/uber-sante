@@ -37,11 +37,11 @@ class CartAppointmentController extends Controller
     {
 		$cart_appointment = CartAppointment::find($id);
 		$collection = collect([
-			'clinic_id' => $cart_appointment->clinic_id
-			'start_time' => $cart_appointment->start_time 
-			'duration' => $cart_appointment->duration 
-			'patient_id' => $cart_appointment->patient_id 
-			'physician_id' => $cart_appointment->physician_id 
+			'clinic_id' => $cart_appointment->clinic_id,
+			'start_time' => $cart_appointment->start_time,
+			'duration' => $cart_appointment->duration,
+			'patient_id' => $cart_appointment->patient_id, 
+			'physician_id' => $cart_appointment->physician_id, 
 			'room_id' => $cart_appointment->room_id		
 		]);		
 		return $collection;

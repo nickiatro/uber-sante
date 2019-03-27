@@ -32,7 +32,7 @@ class AvailabilityController extends Controller
      */
     public function show($date)
     {
-		$availability = DB::select('select * from availability where date between $date and '$date 23:59:59 '', [1]);
+		$availability = select(DB::raw(1));
 		return $availability;
     }
 

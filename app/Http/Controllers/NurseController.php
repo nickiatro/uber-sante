@@ -30,4 +30,21 @@ class NurseController extends Controller
 
     }
 
+    public function loginNurse()
+    {
+        return view('nurse.login');
+    }
+
+    public function home()
+  {
+    return view('nurse');
+  }
+
+    public function logout()
+  {
+    Auth::guard('nurse')->logout();
+
+    return redirect('/login/nurse'); 
+  }
+
 } 
