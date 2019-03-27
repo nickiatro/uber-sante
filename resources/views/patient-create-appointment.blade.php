@@ -73,10 +73,15 @@ function test_input($data) {
 $visible = "display:none;";
 $times = "";
 
-if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == ""))
-    {
+if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
         $visible = "";
-    }
+}
+
+if ($times == "") {
+    $times = "<option>Choose Another Date</option>";
+}
+
+$patientId = Auth::user()->healthCard;
 
 ?>
 
@@ -112,7 +117,7 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
-        <input type="submit" id="button" class="btn btn-primary" value="Search">
+        <input type="submit" id="search-button" class="btn btn-primary" value="Search">
     </form>
     <div class="col-lg-6 col-lg-offset-3" style="<?php echo $visible;?>">
         <label for="times">Select Appointment Time</label>
@@ -122,7 +127,9 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
     </div>
 
 </div>
-
+<div class="col-lg-6 col-lg-offset-4" style="<?php echo $visible;?>">
+    <input type="button" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
+</div>
 </body>
 <script type="text/javascript">
     var today = new Date();
