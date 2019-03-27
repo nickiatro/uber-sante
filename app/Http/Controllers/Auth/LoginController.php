@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/welcome';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -60,7 +60,15 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return string
      */
+
     public function field(Request $request)
+    {
+        $email = $this->username();
+        return filter_var($request->get($email), FILTER_VALIDATE_EMAIL) ? $email : 'email';
+    }
+
+    
+    public function fieldPhysicians(Request $request)
     {
         $email = $this->username();
         return filter_var($request->get($email), FILTER_VALIDATE_EMAIL) ? $email : 'physicianNumber';
@@ -71,12 +79,12 @@ class LoginController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return void
      */
-    protected function validateLogin(Request $request)
+    protected function validateLoginPhysicians(Request $request)
     {
-        $field = $this->field($request);
+        $fieldPhysicians = $this->field($request);
         $messages = ["{$this->username()}.exists" => 'The account you are trying to login is not registered or it has been disabled.'];
         $this->validate($request, [
-            $this->username() => "required|exists:physicians,{$field}",
+            $this->username() => "required|exists:physicians,{$fieldPhysicians}",
             'password' => 'required',
         ], $messages);
     }
