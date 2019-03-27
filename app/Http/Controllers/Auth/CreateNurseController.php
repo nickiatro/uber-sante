@@ -59,6 +59,7 @@ class CreateNurseController extends Controller
     {
         return Validator::make($data, [
             'accessId' => 'required|regex:/^[a-zA-Z]{3}\d{5}+$/|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -73,8 +74,9 @@ class CreateNurseController extends Controller
     {
             $user = new Nurse;
             $user -> accessId = $data['accessId'];
+            $user -> email = $data['email'];
             $user -> password = Hash::make($data['password']);
-            $user -> admin_privilege = 1;
+            $user -> admin_privilege = 0;
 
             $nMap = new nurse_mapper();
             $nMap->registerNurse($user);

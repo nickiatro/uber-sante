@@ -13,6 +13,7 @@ class nurse_mapper{
     public static function registerNurse(Nurse $user){
          DB::table('nurses')->insert(
     ['accessId' =>  $user->accessId,
+    'email' => $user->email,
     'password' => $user->password,
     'admin_privilege'=> $user->admin_privilege,
     'created_at' => date('Y-m-d H:i:s'),

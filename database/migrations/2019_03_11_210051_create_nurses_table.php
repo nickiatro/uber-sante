@@ -16,6 +16,7 @@ class CreateNursesTable extends Migration
         Schema::create('nurses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('accessId')->unique();
+            $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
             $table->rememberToken();
