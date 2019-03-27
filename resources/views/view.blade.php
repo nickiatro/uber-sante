@@ -13,24 +13,16 @@
             <tr>
                 <th>Patient's name</th>
                 <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
                 <th>Doctor</th>
                 <th>Clinic</th>
-                <th>Address</th>
-                <th>Comments</th>
                 <th>Modify/Delete an Appointment</th>
             </tr>
             @foreach($appointment_list as $row)
             <tr>
-                <td>{{$row['name']}}</td>
-                <td>{{$row['date']}}</td>
-                <td>{{$row['starttime']}}</td>
-                <td>{{$row['endtime']}}</td>
-                <td>{{$row['doctor']}}</td>
-                <td>{{$row['clinic']}}</td>
-                <td>{{$row['address']}}</td>
-                <td>{{$row['Comments']}}</td>
+                <td>{{$row['patient_id']}}</td>
+                <td>{{$row['start_time']}}</td>
+                <td>{{$row['physician_id']}}</td>
+                <td>{{$row['clinic_id']}}</td>
                 <td>
                 <button class="btn btn-primary">Modify</button>
                 <button class="btn btn-primary">Cancel</button>

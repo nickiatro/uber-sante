@@ -38,6 +38,8 @@ Route::post('/login/physician', 'Auth\LoginController@validateLogin')->name('log
 Route::get('/login/nurse', 'Auth\LoginController@showLoginForm');
 Route::post('/login/nurse', 'Auth\LoginController@validateLoginNurses')->name('login.nurse');
 
+Route::get('/view', 'ViewController@index')->name('view');
+
 Route::get('createPhysician', 'Auth\CreatePhysicianController@showcreatePhysicianForm')->name('createPhysician');
 Route::post('createPhysician', 'Auth\CreatePhysicianController@register');
 
