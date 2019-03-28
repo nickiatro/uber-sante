@@ -23,14 +23,14 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
         <center><h1>My Appointments</h1></center>
         <br />
         <table class='table table-bordered'>
-            <tr>
+            <tr style="text-align:center">
             
-                <th>clinic id</th>
-                <th>start time</th>
-                <th>duration</th>
-                <th>patient id</th>
-                <th>physician id</th>
-                <th>room id</th>
+                <th>Clinic ID</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Patient ID</th>
+                <th>Physician ID</th>
+                <th>Room</th>
             </tr>
             @foreach($appointments as $appointment)
             <tr>
