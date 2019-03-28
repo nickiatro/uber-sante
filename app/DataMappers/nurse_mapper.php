@@ -16,6 +16,8 @@ class nurse_mapper{
     'email' => $user->email,
     'password' => $user->password,
     'admin_privilege'=> $user->admin_privilege,
+    'physician_privilege' => $user->physician_privilege,
+    'nurse_privilege' => $user->nurse_privilege,
     'created_at' => date('Y-m-d H:i:s'),
     'updated_at' => date('Y-m-d H:i:s'),
     
