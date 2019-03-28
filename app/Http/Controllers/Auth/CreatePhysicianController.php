@@ -60,8 +60,8 @@ class CreatePhysicianController extends Controller
         return Validator::make($data, [
             'firstName' => 'required|string|max:255',
             'lastName' => 'required|string|max:255',
-            'physicianNumber' => 'required|digits:7|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+            'physicianNumber' => 'required|digits:7|unique:physicians',
+            'email' => 'required|string|email|max:255|unique:physicians',
             'password' => 'required|string|min:6|confirmed',
             'specialty' => 'required|string|max:255',
             'city' => 'required|string|max:255',
@@ -85,6 +85,8 @@ class CreatePhysicianController extends Controller
             $user -> specialty = $data['specialty'];
             $user -> city = $data['city'];
             $user -> admin_privilege = 0;
+            $user -> nurse_privilege = 0;
+            $user -> physician_privilege = 1;
 
             $pMap = new physician_mapper();
             $pMap->registerPhysician($user);

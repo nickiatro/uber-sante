@@ -4,6 +4,18 @@
 
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<?php
+
+use App\Http\Controllers\BookAppointmentsController;
+
+$appointments = BookAppointmentsController::showAppointments();
+$cart = BookAppointmentsController::getCartContent(Auth::user()->id);
+
+?>
+
+
 <div class="row">
     <div class="col-md-12">
         <br />
@@ -11,25 +23,30 @@
         <br />
         <table class='table table-bordered'>
             <tr>
-                <th>Patient's name</th>
-                <th>Date</th>
-                <th>Doctor</th>
-                <th>Clinic</th>
-                <th>Modify/Delete an Appointment</th>
+            
+                <th>clinic id</th>
+                <th>start time</th>
+                <th>duration</th>
+                <th>patient id</th>
+                <th>physician id</th>
+                <th>room id</th>
             </tr>
-            @foreach($appointment_list as $row)
+            @foreach($appointments as $appointment)
             <tr>
-                <td>{{$row['patient_id']}}</td>
-                <td>{{$row['start_time']}}</td>
-                <td>{{$row['physician_id']}}</td>
-                <td>{{$row['clinic_id']}}</td>
-                <td>
-                <button class="btn btn-primary">Modify</button>
-                <button class="btn btn-primary">Cancel</button>
-                </td>
-            </tr>
-            @endforeach
+            
+                <td>{{$appointment->clinic_id}}</td>
+                <td>{{$appointment->start_time}}</td>
+                <td>{{$appointment->duration}}</td>
+                <td>{{$appointment->patient_id}}</td>
+                <td>{{$appointment->physicianNumber}}</td>
+                <td>{{$appointment->room_id}}</td>
+                
+                </tr>
+                @endforeach
         </table>
+
+        <button class="btn btn-primary">Modify</button>
+        <button class="btn btn-primary">Cancel</button>
     </div>
 </div>
 @endsection

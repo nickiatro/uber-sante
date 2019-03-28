@@ -1,63 +1,57 @@
 @extends('layouts.app')
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Appointment Cart</title>
+@section('title' , 'Appointment Cart')
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-    </style>
-</head>
-<body>
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<?php
+
+use App\Http\Controllers\BookAppointmentsController;
+
+$appointments = BookAppointmentsController::showAppointments();
+$cart = BookAppointmentsController::getCartContent(Auth::user()->id);
+
+?>
+
+
 <div class="row">
-    <div class="col-md-12 col-lg-8 col-lg-offset-2">
+    <div class="col-md-12">
         <br />
         <center><h1>Appointment Cart</h1></center>
         <br />
         <table class='table table-bordered'>
             <tr>
-                <th>Patient's name</th>
-                <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Doctor</th>
-                <th>Clinic</th>
-                <th>Address</th>
-                <th>Comments</th>
-                <th>Delete an Appointment</th>
+            
+                <th>clinic id</th>
+                <th>start time</th>
+                <th>duration</th>
+                <th>patient id</th>
+                <th>physician id</th>
+                <th>room id</th>
             </tr>
+            @foreach($cart as $c)
             <tr>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                <td>data</td>
-                    <td><button class="btn btn-primary">Delete</button></td>
+            
+                <td>{{$c->clinic_id}}</td>
+                <td>{{$c->start_time}}</td>
+                <td>{{$c->duration}}</td>
+                <td>{{$c->patient_id}}</td>
+                <td>{{$c->physicianNumber}}</td>
+                <td>{{$c->room_id}}</td>
+            
+                <td>
+                <button class="btn btn-primary">Modify</button>
+                <button class="btn btn-primary">Cancel</button>
+                </td>
             </tr>
+            @endforeach
+        
         </table>
+
+        <a class="btn btn-primary" href="{{route('appointment.checkoutCart')}}">Checkout Cart</a>
+        <a class="btn btn-primary" href="{{route('appointment.cancelTransaction')}}">Cancel Transaction</a>  
     </div>
 </div>
 @endsection
-
-</body>
-<script type="text/javascript">
-
-</script>
-</html>

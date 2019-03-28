@@ -88,6 +88,8 @@ class RegisterController extends Controller
             $user -> city = $data['city'];
             $user -> street = $data['street'];
             $user -> admin_privilege = 0;
+            $user -> nurse_privilege = 0;
+            $user -> physician_privilege = 0;
 
             $uMap = new user_mapper();
             $uMap->registerUser($user);

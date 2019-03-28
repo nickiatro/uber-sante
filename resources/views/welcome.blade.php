@@ -107,7 +107,13 @@
 				<a href="patient-create-appointment"> Book Appointment</a>
 			</div>
 			<div class="links">
-				<a href="addToCart"> Add to Cart</a>
+				<a href="addToCart"> Appointment Cart</a>
+            @if (Auth::user()->physician_privilege == "1")
+            <div class="links">
+				<a href="view">My Availabilities</a>
+			</div>
+            @endif
+
 			</div>
                 	<div class="links">
 				<a href="view">My Appointments</a>
