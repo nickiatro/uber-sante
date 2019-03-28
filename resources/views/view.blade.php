@@ -4,6 +4,18 @@
 
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<?php
+
+use App\Http\Controllers\bookAppointmentsController;
+use App\Http\Controllers\AppointmentController;
+$appointments = bookAppointmentsController::getAllAppointments($users); 
+$cart = bookAppointmentsController::getCartContent(Auth::user()->id);
+
+?>
+
+
 <div class="row">
     <div class="col-md-12">
         <br />
@@ -21,22 +33,17 @@
                 <th>Comments</th>
                 <th>Modify/Delete an Appointment</th>
             </tr>
-            @foreach($appointment_list as $row)
+            
             <tr>
-                <td>{{$row['name']}}</td>
-                <td>{{$row['date']}}</td>
-                <td>{{$row['starttime']}}</td>
-                <td>{{$row['endtime']}}</td>
-                <td>{{$row['doctor']}}</td>
-                <td>{{$row['clinic']}}</td>
-                <td>{{$row['address']}}</td>
-                <td>{{$row['Comments']}}</td>
+       
+                <td>{{$id}}</td>
+        
                 <td>
                 <button class="btn btn-primary">Modify</button>
                 <button class="btn btn-primary">Cancel</button>
                 </td>
             </tr>
-            @endforeach
+        
         </table>
     </div>
 </div>

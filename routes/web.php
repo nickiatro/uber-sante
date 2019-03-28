@@ -53,4 +53,8 @@ Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
 })->name('patient-create-appointment');
 
+Route::get('/addAppointmentToCart/{appointment}', 'bookAppointmentsController@addAppointmentToCart')->name('appointment.addToCart');
+Route::get('/removeAppointmentFromCart{appopintment}','bookAppointmentController@removeAppointmentFromCart')->name('appointment.removeFromCart');
+Route::get('/cancelTransaction','bookAppointmentController@cancelTransaction')->name('appointment.cancelTransaction');
+Route::get('/checkoutCart','bookAppointmentController@checkoutCart')->name('appointment.checkoutCart');
 
