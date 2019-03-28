@@ -42,8 +42,8 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
                 <td>{{$c->room_id}}</td>
             
                 <td>
-                <button class="btn btn-primary">Modify</button>
-                <button class="btn btn-primary">Cancel</button>
+                <a class="btn btn-primary">Modify</a>
+                <a href="{{route('appointment.cancelTransaction')}}" class="btn btn-primary">Cancel</a>
                 </td>
             </tr>
             @endforeach

@@ -64,24 +64,38 @@ public static function removeAppointmentFromCart($appointment_id){
 
 public static function cancelTransaction(){
     if (Auth::user()->admin_privilege == "0") {
-    $lMap = new bookAppointments_mapper();
-    $lMap->cancelTransaction();
+    $aMap = new bookAppointments_mapper();
+    $aMap->cancelTransaction();
 }
     return redirect()->back();
+}
+
+public static function cancelAppointment(){
+    if (Auth::user()->admin_privilege == "0") {
+    $aMap = new bookAppointments_mapper();
+    $aMap->cancelAppointment();
+}
+return redirect()->back();
 }
 
 public static function checkoutCart(){
     if (Auth::user()->admin_privilege == "0") {
-    $lMap = new bookAppointments_mapper();
-    $lMap->checkoutCart();
-    $lMap->cancelTransaction();
+    $aMap = new bookAppointments_mapper();
+    $aMap->checkoutCart();
+    $aMap->cancelTransaction();
 }
     return redirect()->back();
 }
 
+public static function getAllAppointments($user){
+    $aMap = new bookAppointments_mapper();
+    $appointments = $aMap->getAllAppointments($user);
 
 
 
 
+
+
+}
 
 }

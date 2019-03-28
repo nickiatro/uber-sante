@@ -13,6 +13,7 @@ use App\Http\Controllers\BookAppointmentsController;
 $appointments = BookAppointmentsController::showAppointments();
 $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
 
+
 ?>
 
 
@@ -40,13 +41,15 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
                 <td>{{$appointment->patient_id}}</td>
                 <td>{{$appointment->physicianNumber}}</td>
                 <td>{{$appointment->room_id}}</td>
+
+                <td><a class="btn btn-primary">Modify</a>
+                <a class="btn btn-primary" href="{{route('appointment.cancelAppointment')}}">Cancel</a></td>
                 
                 </tr>
                 @endforeach
         </table>
 
-        <button class="btn btn-primary">Modify</button>
-        <button class="btn btn-primary">Cancel</button>
+        
     </div>
 </div>
 @endsection

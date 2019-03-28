@@ -10,6 +10,10 @@ class bookAppointments_mapper{
         return DB::table('cart_appointments')->where('id', $user)->get();
     }
 
+    public static function getAllAppointments($user){
+    	return DB::table('appointments')->where('id', $id)->get();
+    }
+
     public function addAppointmentToCart(Request $data){
         DB::table('cart_appointments')->insert(
            [
@@ -33,6 +37,10 @@ class bookAppointments_mapper{
 
    public function cancelTransaction(){
     DB::table('cart_appointments')->where('id',Auth::id())->delete();
+}
+
+public function cancelAppointment(){
+    DB::table('appointments')->where('id',Auth::id())->delete();
 }
 
    public function updateAppointment(){
