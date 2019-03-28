@@ -1,72 +1,145 @@
 @extends('layouts.app')
 
+<?php
+    if(!isset($_SESSION)){
+        session_start();
+    }
+?>
+<!doctype html>
+<html>
+<head>
+    <title>Create Appointment</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<style>
+   html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    height: 100vh;
+    margin: 0;
+    }
+</style>
+</head>
+<body>
+<?php
+$patientErr = $doctorErr = $typeErr = $dateErr = "";
+$patientId = $doctorId = $walkIn = $annual  = $date = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["doctor-id"])) {
+        $doctorErr = "Doctor ID is required";
+    } else {
+        $doctorId = test_input($_POST["doctor-id"]);
+        if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
+            $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
+        }
+    }
+    if (empty($_POST["patient-id"])) {
+        $patientErr = "Patient ID is required";
+    } else {
+        $patientId = test_input($_POST["patient-id"]);
+        if (!preg_match("/^[A-Z]{4}\s\d{4}\s\d{4}+$/",$patientId)) {
+            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
+        }
+    }
+    if (($_POST["date"]) == null) {
+        $dateErr = "Please select a date";
+    } else {
+        $date = test_input($_POST["date"]);
+    }
+    if (($_POST["appointment-type"]) == "null") {
+        $typeErr = "Please select a type";
+    }
+    else if (($_POST["appointment-type"]) == "walk-in") {
+        $walkIn = "selected";
+    }
+    else if (($_POST["appointment-type"]) == "annual-checkup") {
+        $annual = "selected";
+    }
+}
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+$visible = "display:none;";
+$times = "";
+if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
+        $visible = "";
+}
+if ($times == "") {
+    $times = "<option>Choose Another Date</option>";
+}
+if (Auth::user()->healthCard != null) {
+    $patientId = Auth::user()->healthCard;
+}
+?>
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Book Appointment') }}</div>
+<h1 id="header" class="text-center">
+    Search for Availabilities
+</h1>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('appointment.updateAppointment', 'appointment') }}">
-                        @csrf
+<div class="col-lg-4 col-lg-offset-4">
 
-                        <div class="form-group row">
-                            <label for="start_time" class="col-md-4 col-form-label text-md-right">{{ __('Start Time') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="start_time" type="text" class="form-control{{ $errors->has('start_time') ? ' is-invalid' : '' }}" name="start_time" value="{{ old('start_time') }}" required>
-
-                                @if ($errors->has('start_time'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('start_time') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="duration" class="col-md-4 col-form-label text-md-right">{{ __('Duration') }}</label>
-                            <div class="col-md-6">
-                                <select input id="duration" type="text" class="form-control{{ $errors->has('duration') ? ' is-invalid' : '' }}" name="duration" value="{{ old('duration') }}" required>
-                                <option value="20">walk-in (20 minutes)</option>
-                                <option value="60">anunal checkup (60 minutes)</option>
-                                </select>
-
-                                @if ($errors->has('duration'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('duration') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="physicianNumber" class="col-md-4 col-form-label text-md-right">{{ __('Physician Number') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="physicianNumber" type="text" class="form-control{{ $errors->has('physicianNumber') ? ' is-invalid' : '' }}" name="physicianNumber" value="{{ old('physicianNumber') }}" required>
-
-                                @if ($errors->has('physicianNumber'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('physicianNumber') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Create') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
-            </div>
+    <form method= "post" action="{{route('patient-create-appointment')}}">
+        @csrf
+        <div class="form-group">
+            <label for="date">Patient Health Card Number</label>
+            <input class="form-control" type="text" name="patient-id" value="<?php echo $patientId;?>" required>
+            <span class="error" style="color: red;"><?php echo $patientErr;?></span>
         </div>
-    </div>
+        <div class="form-group">
+            <label for="date">Physician Permit Number</label>
+            <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>" required>
+            <span class="error" style="color: red;"><?php echo $doctorErr;?></span>
+        </div>
+        <div class="form-group">
+            <label for="date">Choose an Appointment Date</label>
+            <input class="form-control" type="date" id="date" name="date" value="<?php echo $date;?>" required>
+            <span class="error" style="color:red;"><?php echo $dateErr;?></span>
+        </div>
+        <div class="form-group">
+          <label for="appointment-type">Select the Appointment Type</label>
+          <select class="form-control" id="appointment-type" name="appointment-type" required>
+              <option value="null">Select Type</option>
+              <option value="walk-in" <?php echo $walkIn;?>>Walk-In Visit (20 minutes)</option>
+              <option value= "annual-checkup" <?php echo $annual;?>>Annual Checkup (60 minutes)</option>
+          </select>
+            <span class="error" style="color: red;"><?php echo $typeErr;?></span>
+        </div>
+        <div class="form-group">
+        <input type="submit" id="search-button" class="btn btn-primary" value="Search">
+        </div>
+        <div class="form-group">
+        <div style="<?php echo $visible;?>">
+            <label for="times">Select Appointment Time</label>
+            <select id="times" name="times" class="form-control">
+                <?php echo $times?>
+            </select>
+        </div>
+        </div>
+        <div class="form-group">
+            <input style="<?php echo $visible;?>" type="submit" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
+        </div>
+    </form>
 </div>
 @endsection
+</body>
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    if(dd < 10){
+        dd ='0'+ dd
+    }
+    if(mm < 10){
+        mm ='0'+ mm
+    }
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("date").setAttribute("min", today);
+</script>
+</html>
