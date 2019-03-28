@@ -33,10 +33,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/login/physician', 'Auth\LoginController@showLoginForm');
-Route::post('/login/physician', 'Auth\LoginController@validateLogin')->name('login.physician');
+Route::post('/login/physician', 'Auth\LoginController@validateLoginPhysicians')->name('login.physician');
 
 Route::get('/login/nurse', 'Auth\LoginController@showLoginForm');
 Route::post('/login/nurse', 'Auth\LoginController@validateLoginNurses')->name('login.nurse');
+
+Route::get('/view', 'ViewController@index')->name('view');
 
 Route::get('createPhysician', 'Auth\CreatePhysicianController@showcreatePhysicianForm')->name('createPhysician');
 Route::post('createPhysician', 'Auth\CreatePhysicianController@register');

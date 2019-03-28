@@ -81,6 +81,7 @@ class LoginController extends Controller
      */
     protected function validateLoginPhysicians(Request $request)
     {
+        echo "reached phy validate"; 
         $fieldPhysicians = $this->field($request);
         $messages = ["{$this->username()}.exists" => 'The account you are trying to login is not registered or it has been disabled.'];
         $this->validate($request, [
@@ -97,6 +98,7 @@ class LoginController extends Controller
 
     protected function validateLoginNurses(Request $request)
     {
+        echo "reached nurse validate"; 
         $fieldNurses = $this->fieldNurses($request);
         $messages = ["{$this->username()}.exists" => 'The account you are trying to login is not registered or it has been disabled.'];
         $this->validate($request, [

@@ -43,7 +43,6 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
                 
                 </tr>
                 @endforeach
-
         </table>
 
         <button class="btn btn-primary">Modify</button>
