@@ -81,10 +81,11 @@ if ($times == "") {
     $times = "<option>Choose Another Date</option>";
 }
 
-$patientId = Auth::user()->healthCard;
+if(Auth::user()->healthCard != null) {
+    $patientId = Auth::user()->healthCard;
+}
 
 ?>
-
 <h2 id="header" class="text-center" style="padding-bottom: 5%;">
     Search for Availabilities
 </h2>
@@ -117,19 +118,24 @@ $patientId = Auth::user()->healthCard;
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
+        <div class="form-group">
         <input type="submit" id="search-button" class="btn btn-primary" value="Search">
+        </div>
+        <div class="form-group">
+        <div style="<?php echo $visible;?>">
+            <label for="times">Select Appointment Time</label>
+            <select id="times" name="times" class="form-control">
+                <?php echo $times?>
+            </select>
+        </div>
+        </div>
+        <div class="form-group">
+            <input style="<?php echo $visible;?>" type="submit" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
+        </div>
     </form>
-    <div class="col-lg-6 col-lg-offset-3" style="<?php echo $visible;?>">
-        <label for="times">Select Appointment Time</label>
-        <select id="times" name="times" class="form-control">
-            <?php echo $times?>
-        </select>
-    </div>
+</div>
 
-</div>
-<div class="col-lg-6 col-lg-offset-4" style="<?php echo $visible;?>">
-    <input type="button" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
-</div>
+
 </body>
 <script type="text/javascript">
     var today = new Date();
