@@ -23,7 +23,7 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
         <center><h1>My Appointments</h1></center>
         <br />
         <table class='table table-bordered'>
-            <tr>
+            <tr style="text-align:center">
             
                 <th>Clinic ID</th>
                 <th>Start Time</th>
