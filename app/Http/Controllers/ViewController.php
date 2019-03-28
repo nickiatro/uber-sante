@@ -1,7 +1,11 @@
 <?php
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Appointment;
 
 class ViewController extends Controller
 {
@@ -23,8 +27,9 @@ class ViewController extends Controller
      */
     public function index()
     {
+        $id = Auth::id();    
         $appointment_list = Appointment::all()->toArray();
-        return view('view.index', compact('appointment_list'));
+        return view('view', ['appointment_list'=>$appointment_list]);
     }
 
 }
