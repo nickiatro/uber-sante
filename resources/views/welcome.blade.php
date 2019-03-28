@@ -107,7 +107,7 @@
 				<a href="patient-create-appointment"> Book Appointment</a>
 			</div>
 			<div class="links">
-				<a href="addToCart"> Add to Cart</a>
+				<a href="addToCart"> Appointment Cart</a>
 			</div>
                 	<div class="links">
 				<a href="view">My Appointments</a>

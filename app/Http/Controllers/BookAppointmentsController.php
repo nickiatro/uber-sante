@@ -7,12 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\DataMappers\bookAppointments_mapper;
+use App\Appointment;
 
 class BookAppointmentsController extends Controller{
 
-public static function getAllAppointments($user){
-	return DB::table('appointment')->where('id', $user)->get();
-}
 
 public static function showAppointments(){
 
@@ -29,22 +27,35 @@ public static function getCartContent($user){
     return $appointments;
 }
 
+public static function updateAppointment(){
 
-public static function addAppointmentToCart($user){
+    if (Auth::user()->admin_privilege == "0"){
+        $aMap = new bookAppointments_mapper();
+        $aMap->updateAppointment($appointment_id);
+        
+        }
+
+        return $appointments;
+
+
+}
+
+
+public static function addAppointmentToCart($appointment_id){
     if (Auth::user()->admin_privilege == "0"){
     $aMap = new bookAppointments_mapper();
-    $aMap->addAppointmentToCart($user);
+    $aMap->addAppointmentToCart($appointment_id);
     }
 
     return redirect()->back();
 
 }
 
-public static function removeAppointmentFromCart($user){
+public static function removeAppointmentFromCart($appointment_id){
 
     if (Auth::user()->admin_privilege == "0"){
         $aMap = new bookAppointments_mapper();
-        $aMap->removeAppointmentFromCart($user);
+        $aMap->removeAppointmentFromCart($appointment_id);
         }
     
         return redirect()->back();

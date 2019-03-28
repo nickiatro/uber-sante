@@ -15,13 +15,16 @@ class CreateCartAppointmentsTable extends Migration
     {
         Schema::create('cart_appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('clinic_id');
-            $table->dateTime('start_time');
+            $table->integer('clinic_id')->default(0);
+            $table->integer('start_time');
             $table->integer('duration');
             $table->integer('patient_id');
-            $table->integer('physician_id');
-            $table->integer('room_id');
+            $table->integer('physicianNumber');
+            $table->integer('room_id')->default(0);;
             $table->timestamps();
+
+            $table->foreign('patient_id')->references('id')->on('users');
+            $table->foreign('physicianNumber')->references('id')->on('physicians');
         });
     }
 

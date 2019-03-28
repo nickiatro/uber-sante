@@ -8,10 +8,10 @@
 
 <?php
 
-use App\Http\Controllers\bookAppointmentsController;
-use App\Http\Controllers\AppointmentController;
-$appointments = bookAppointmentsController::getAllAppointments($users); 
-$cart = bookAppointmentsController::getCartContent(Auth::user()->id);
+use App\Http\Controllers\BookAppointmentsController;
+
+$appointments = BookAppointmentsController::showAppointments();
+$cart = BookAppointmentsController::getCartContent(Auth::user()->id);
 
 ?>
 
@@ -23,28 +23,31 @@ $cart = bookAppointmentsController::getCartContent(Auth::user()->id);
         <br />
         <table class='table table-bordered'>
             <tr>
-                <th>Patient's name</th>
-                <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Doctor</th>
-                <th>Clinic</th>
-                <th>Address</th>
-                <th>Comments</th>
-                <th>Modify/Delete an Appointment</th>
-            </tr>
             
-            <tr>
-       
-                <td>{{$id}}</td>
-        
-                <td>
-                <button class="btn btn-primary">Modify</button>
-                <button class="btn btn-primary">Cancel</button>
-                </td>
+                <th>clinic id</th>
+                <th>start time</th>
+                <th>duration</th>
+                <th>patient id</th>
+                <th>physician id</th>
+                <th>room id</th>
             </tr>
-        
+            @foreach($appointments as $appointment)
+            <tr>
+            
+                <td>{{$appointment->clinic_id}}</td>
+                <td>{{$appointment->start_time}}</td>
+                <td>{{$appointment->duration}}</td>
+                <td>{{$appointment->patient_id}}</td>
+                <td>{{$appointment->physicianNumber}}</td>
+                <td>{{$appointment->room_id}}</td>
+                
+                </tr>
+                @endforeach
+
         </table>
+
+        <button class="btn btn-primary">Modify</button>
+        <button class="btn btn-primary">Cancel</button>
     </div>
 </div>
 @endsection
