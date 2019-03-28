@@ -18,7 +18,7 @@ class AvailabilityController extends Controller
     public function store(Request $request)
     {       
         $availability = new Availability;
-        $availability->physician_id = $request->physician_id;
+        $availability->physicianNumber = $request->physicianNumber;
         $availability->start_time = $request->start_time;
         $availability->patient_id = $request->patient_id;
         $availability->save();
@@ -41,15 +41,15 @@ class AvailabilityController extends Controller
      * Update the specified availability in storage.
      *
      * @param  int  $id
-     * @param  int  $physician_id
+     * @param  int  $physicianNumber
      * @param  dateTime  $start_time
      * @param  int  $duration
      * @return Response
      */
-    public function update($id, $physician_id, $start_time, $duration)
+    public function update($id, $physicianNumber, $start_time, $duration)
     {
 		$availability = Availability::find($id);
-        $availability->physician_id = $physician_id;
+        $availability->physicianNumber = $physicianNumber;
         $availability->start_time = $start_time;
         $availability->patient_id = $patient_id;
         $availability->save();

@@ -15,12 +15,12 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('physician_id');
+            $table->integer('physicianNumber');
             $table->dateTime('start_time');
             $table->integer('duration');
             $table->timestamps();
 
-            $table->foreign('physician_id')->references('id')->on('physicians');
+            $table->foreign('physicianNumber')->references('id')->on('physicians');
         });
     }
 

@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->rememberToken();
             $table->integer('admin_privilege')->default(0);
+            $table->integer('nurse_privilege')->default(0);
+            $table->integer('physician_privilege')->default(0);
             $table->integer('logged_in')->default(0);
         });
 

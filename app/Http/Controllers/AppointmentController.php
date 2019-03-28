@@ -22,7 +22,7 @@ class AppointmentController extends Controller
         $appointment->start_time = $request->start_time;
         $appointment->duration = $request->duration;
         $appointment->patient_id = $request->patient_id;
-        $appointment->physician_id = $request->physician_id;
+        $appointment->physicianNumber = $request->physicianNumber;
         $appointment->room_id = $request->room_id;
         $appointment->save();
     }
@@ -41,7 +41,7 @@ class AppointmentController extends Controller
 			'start_time' => $appointment->start_time,
 			'duration' => $appointment->duration, 
 			'patient_id' => $appointment->patient_id,
-			'physician_id' => $appointment->physician_id, 
+			'physicianNumber' => $appointment->physicianNumber, 
 			'room_id' => $appointment->room_id		
 		]);
 		return $collection;
@@ -56,18 +56,18 @@ class AppointmentController extends Controller
      * @param  dateTime  $start_time
      * @param  int  $duration
      * @param  int  $patient_id
-     * @param  int  $physician_id
+     * @param  int  $physicianNumber
      * @param  int  $room_id
      * @return Response
      */
-    public function update($id, $clinic_id, $start_time, $duration, $patient_id, $physician_id, $room_id)
+    public function update($id, $clinic_id, $start_time, $duration, $patient_id, $physicianNumber, $room_id)
     {
 		$appointment = Appointment::find($id);
         $appointment->clinic_id = $clinic_id;
         $appointment->start_time = $start_time;
         $appointment->duration = $duration;
         $appointment->patient_id = $patient_id;
-        $appointment->physician_id = $physician_id;
+        $appointment->physicianNumber = $physicianNumber;
         $appointment->room_id = $room_id;
         $appointment->save();
     }
