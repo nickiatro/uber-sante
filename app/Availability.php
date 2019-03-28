@@ -2,14 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Availability extends Model
+class Availability
 {
-    // Note that at the moment all availabilities represent a weekly recurring availability
-    // Ex. An availability for monday from 8am to 8pm means they will be available every monday
-    //     from 8am to 8pm
+    use Notifiable;
 
-    // All attributes are mass assignable for now
-    protected $guarded = [];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'id', 'physician_id', 'start_time', 'duration'
+    ];
+
+    public $timestamps = true;
 }
