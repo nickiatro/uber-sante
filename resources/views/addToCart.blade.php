@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -20,9 +22,9 @@
     </style>
 </head>
 <body>
-
+@section('content')
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12 col-lg-8 col-lg-offset-2">
         <br />
         <center><h1>Appointment Cart</h1></center>
         <br />
@@ -52,7 +54,7 @@
         </table>
     </div>
 </div>
-
+@endsection
 
 </body>
 <script type="text/javascript">

@@ -1,3 +1,5 @@
+@extends('layouts.app')
+
 <?php
     if(!isset($_SESSION)){
         session_start();
@@ -15,7 +17,7 @@
     background-color: #fff;
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     height: 100vh;
     margin: 0;
     }
@@ -86,9 +88,10 @@ if (Auth::user()->healthCard != null) {
 }
 
 ?>
-<h2 id="header" class="text-center" style="padding-bottom: 5%;">
+@section('content')
+<h1 id="header" class="text-center">
     Search for Availabilities
-</h2>
+</h1>
 
 <div class="col-lg-4 col-lg-offset-4">
 
@@ -134,8 +137,7 @@ if (Auth::user()->healthCard != null) {
         </div>
     </form>
 </div>
-
-
+@endsection
 </body>
 <script type="text/javascript">
     var today = new Date();
