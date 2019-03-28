@@ -1,4 +1,4 @@
-@extends('layouts.app')
+extends('layouts.app')
 
 <?php
     if(!isset($_SESSION)){
@@ -21,14 +21,12 @@
     height: 100vh;
     margin: 0;
     }
-
 </style>
 </head>
 <body>
 <?php
 $patientErr = $doctorErr = $typeErr = $dateErr = "";
 $patientId = $doctorId = $walkIn = $annual  = $date = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["doctor-id"])) {
         $doctorErr = "Doctor ID is required";
@@ -38,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
         }
     }
-
     if (empty($_POST["patient-id"])) {
         $patientErr = "Patient ID is required";
     } else {
@@ -47,13 +44,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
-
     if (($_POST["date"]) == null) {
         $dateErr = "Please select a date";
     } else {
         $date = test_input($_POST["date"]);
     }
-
     if (($_POST["appointment-type"]) == "null") {
         $typeErr = "Please select a type";
     }
@@ -64,29 +59,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $annual = "selected";
     }
 }
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
-
 $visible = "display:none;";
 $times = "";
-
 if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
         $visible = "";
 }
-
 if ($times == "") {
     $times = "<option>Choose Another Date</option>";
 }
-
 if (Auth::user()->healthCard != null) {
     $patientId = Auth::user()->healthCard;
 }
-
 ?>
 @section('content')
 <h1 id="header" class="text-center">
@@ -150,9 +139,7 @@ if (Auth::user()->healthCard != null) {
     if(mm < 10){
         mm ='0'+ mm
     }
-
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
-
 </script>
 </html>
