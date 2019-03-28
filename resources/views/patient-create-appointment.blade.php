@@ -81,7 +81,7 @@ if ($times == "") {
     $times = "<option>Choose Another Date</option>";
 }
 
-if(Auth::user()->healthCard != null) {
+if (Auth::user()->healthCard != null) {
     $patientId = Auth::user()->healthCard;
 }
 
@@ -151,9 +151,6 @@ if(Auth::user()->healthCard != null) {
 
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
-    document.getElementById("submit").addEventListener("onclick", function() {
-
-    })
 
 </script>
 </html>
