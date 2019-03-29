@@ -157,7 +157,6 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         </div>
     </form>
 </div>
-@endsection
 </body>
 <script type="text/javascript">
     var today = new Date();
@@ -173,4 +172,5 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
     today = yyyy + '-' + mm + '-' + dd;
     document.getElementById("date").setAttribute("min", today);
 </script>
+@endsection
 </html>
