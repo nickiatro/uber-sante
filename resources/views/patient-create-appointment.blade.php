@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 <?php
-    if(!isset($_SESSION)){
+
+use Illuminate\Support\Facades\DB;
+
+if(!isset($_SESSION)){
         session_start();
     }
 ?>
@@ -65,16 +68,44 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
+
+$duration = 0;
+
+if ($walkIn == "selected"){
+    $duration = 20;
+}
+else if ($annual == "selected") {
+    $duration = 60;
+}
+
 $visible = "display:none;";
 $times = "";
 if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
         $visible = "";
 }
+
+//$times = '<option value="1000">10:00 AM</option> <br /> <option value="1030">10:30 AM</option>';
+
 if ($times == "") {
     $times = "<option>Choose Another Date</option>";
 }
+
 if (Auth::user()->healthCard != null) {
     $patientId = Auth::user()->healthCard;
+}
+
+if (array_key_exists("add-to-cart-button", $_POST)) {
+    DB::table('cart_appointments')->insert(  [
+        'clinic_id' => 1,
+        'start_time' => $_POST["times"],
+        'duration' => $duration,
+        'patient_id' => Auth::user()->id,
+        'physicianNumber' => 2,
+        'room_id' => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s')]);
+    header("Location: /addToCart");
+    exit;
 }
 ?>
 @section('content')
@@ -122,7 +153,7 @@ if (Auth::user()->healthCard != null) {
         </div>
         </div>
         <div class="form-group">
-            <input style="<?php echo $visible;?>" type="submit" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
+            <input style="<?php echo $visible;?>" type="submit" name="add-to-cart-button" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
         </div>
     </form>
 </div>
