@@ -18,13 +18,18 @@ class CreateCartAppointmentsTable extends Migration
             $table->integer('clinic_id')->default(0);
             $table->integer('start_time');
             $table->integer('duration');
-            $table->integer('patient_id');
-            $table->integer('physicianNumber');
+            $table->integer('healthCard')->unsigned()->nullable();;
+            $table->integer('physicianNumber')->unsigned()->nullable();;
             $table->integer('room_id')->default(0);;
             $table->timestamps();
 
-            $table->foreign('patient_id')->references('id')->on('users');
-            $table->foreign('physicianNumber')->references('id')->on('physicians');
+        });
+
+
+        Schema::table('appointments', function($table){
+            $table->foreign('healthCard')->references('healthCard')->on('users');
+            $table->foreign('physicianNumber')->references('physicianNumber')->on('physicians');
+
         });
     }
 

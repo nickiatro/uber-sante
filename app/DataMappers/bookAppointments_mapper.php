@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class bookAppointments_mapper{
 
     public function getCartContent($user){
-        return DB::table('cart_appointments')->where('id', $user)->get();
+        return DB::table('cart_appointments')->where('healthCard', $user)->get();
     }
 
     public static function getAllAppointments($user){
@@ -20,7 +20,7 @@ class bookAppointments_mapper{
            'clinic_id' => $data->get('clinic_id'),
            'start_time' => $data->get('start_time'),
            'duration' => $data->get('duration'),
-           'patient_id' => Auth::user()->id(),
+           'healthCard' => Auth::user()->healthcard(),
            'physicianNumber' => $data->get('physicianNumber'),
            'room_id' => $data->get('room_id'),
            'created_at' => date('Y-m-d H:i:s'),
@@ -58,7 +58,7 @@ public function cancelAppointment(){
             'clinic_id' => $cart->get('clinic_id'),
            'start_time' => $cart->get('start_time'),
            'duration' => $cart->get('duration'),
-           'patient_id' => Auth::user()->id(),
+           'healthCard' => Auth::user()->id(),
            'physicianNumber' => $cart->get('physicianNumber'),
            'room_id' => $cart->get('room_id'),
            'created_at' => date('Y-m-d H:i:s'),

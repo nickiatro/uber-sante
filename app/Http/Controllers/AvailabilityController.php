@@ -32,10 +32,10 @@ class AvailabilityController extends Controller
       return redirect()->back();
     }
     
-    public function removeAvailability($physician_id, $start_time)
+    public function removeAvailability($physicianNumber, $start_time)
     {
       $avMap = new availability_mapper();
-      $avMap->removeAvailability($physician_id, $start_time);    
+      $avMap->removeAvailability($physicianNumber, $start_time);    
       return redirect()->back();
     }
 

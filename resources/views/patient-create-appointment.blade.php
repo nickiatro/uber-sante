@@ -84,7 +84,7 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
         $visible = "";
 }
 
-//$times = '<option value="1000">10:00 AM</option> <br /> <option value="1030">10:30 AM</option>';
+$times = '<option value="1000">10:00 AM</option> <br /> <option value="1030">10:30 AM</option>';
 
 if ($times == "") {
     $times = "<option>Choose Another Date</option>";
@@ -99,8 +99,8 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         'clinic_id' => 1,
         'start_time' => $_POST["times"],
         'duration' => $duration,
-        'patient_id' => Auth::user()->id,
-        'physicianNumber' => 2,
+        'healthCard' => $patientId,
+        'physicianNumber' => $doctorId,
         'room_id' => 1,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);

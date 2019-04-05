@@ -64,7 +64,7 @@ class ScheduleController
         $dayStart = clone($date)->setTime(07, 59); // Get the start of the day
         $dayEnd = clone($date)->setTime(20, 01); // Get the end of the day
 
-        return Appointment::where('patient_id', $physicianId)
+        return Appointment::where('healthCard', $physicianId)
                                    ->where('start_time', '>', strtotime($dayStart))
                                    ->where('start_time', '<', strtotime($dayEnd))
                                    ->get();
