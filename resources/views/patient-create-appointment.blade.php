@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 <?php
 
 use Illuminate\Support\Facades\DB;
@@ -129,7 +128,7 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>
-            <input class="form-control" type="date" id="date" name="date" value="<?php echo $date;?>" required>
+            <input class="form-control" type="date" id="date" name="date" min="<?php echo date("Y-m-d");?>" value="<?php echo $date;?>" required>
             <span class="error" style="color:red;"><?php echo $dateErr;?></span>
         </div>
         <div class="form-group">
@@ -158,19 +157,5 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
     </form>
 </div>
 </body>
-<script type="text/javascript">
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if(dd < 10){
-        dd ='0'+ dd
-    }
-    if(mm < 10){
-        mm ='0'+ mm
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("date").setAttribute("min", today);
-</script>
 @endsection
 </html>
