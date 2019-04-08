@@ -15,7 +15,7 @@ class BookAppointmentsController extends Controller{
 public static function showAppointments(){
 
     $aMap = new bookAppointments_mapper();
-    $appointments = $aMap->showAppointments();
+    $appointments = $aMap->showAppointments(Auth::user()->healthCard);
     return $appointments;
 
 }

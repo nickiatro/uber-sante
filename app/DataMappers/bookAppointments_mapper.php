@@ -31,8 +31,8 @@ class bookAppointments_mapper{
         DB::table('cart_appointments')->where('id',Auth::id())->where('user',$user)->delete();
    }
 
-   public function showAppointments(){
-    return DB::table('appointments')->where('id',Auth::id())->get();
+   public function showAppointments($healthCard){
+    return DB::table('appointments')->where('healthCard', '=', $healthCard)->get();
    }
 
    public function cancelTransaction(){
