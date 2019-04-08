@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class bookAppointments_mapper{
 
     public function getCartContent($user){
-        return DB::table('cart_appointments')->where('id', $user)->get();
+        return DB::table('cart_appointments')->where('healthCard', $user)->get();
     }
 
     public static function getAllAppointments($user){
@@ -20,7 +20,7 @@ class bookAppointments_mapper{
            'clinic_id' => $data->get('clinic_id'),
            'start_time' => $data->get('start_time'),
            'duration' => $data->get('duration'),
-           'patient_id' => Auth::user()->id(),
+           'healthCard' => Auth::user()->healthcard(),
            'physicianNumber' => $data->get('physicianNumber'),
            'room_id' => $data->get('room_id'),
            'created_at' => date('Y-m-d H:i:s'),
@@ -31,8 +31,8 @@ class bookAppointments_mapper{
         DB::table('cart_appointments')->where('id',Auth::id())->where('user',$user)->delete();
    }
 
-   public function showAppointments(){
-    return DB::table('appointments')->where('id',Auth::id())->get();
+   public function showAppointments($healthCard){
+    return DB::table('appointments')->where('healthCard', '=', $healthCard)->get();
    }
 
    public function cancelTransaction(){
@@ -50,21 +50,22 @@ public function cancelAppointment(){
     
    }
 
-   public function checkoutCart(){
-      $cart =  DB::table('cart_appointments')->where('id', Auth::id())->get();
+   public function checkoutCart($healthCard){
+        $cart = DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->get();
 
-      DB::table('appointments')->insert(
-        [
-            'clinic_id' => $cart->get('clinic_id'),
-           'start_time' => $cart->get('start_time'),
-           'duration' => $cart->get('duration'),
-           'patient_id' => Auth::user()->id(),
-           'physicianNumber' => $cart->get('physicianNumber'),
-           'room_id' => $cart->get('room_id'),
-           'created_at' => date('Y-m-d H:i:s'),
-               'updated_at' => date('Y-m-d H:i:s')]);
+       foreach ($cart as $c) {
+           DB::table('appointments')->insert([
+               'clinic_id' => $c->clinic_id,
+               'start_time' => $c->start_time,
+               'duration' => $c->duration,
+               'healthCard' => $c->healthCard,
+               'physicianNumber' => $c->physicianNumber,
+               'room_id' => $c->room_id
+           ]);
+       }
 
-                    }
+       DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->truncate();
+   }
 
    }
 

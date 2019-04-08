@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 <?php
 
 use Illuminate\Support\Facades\DB;
@@ -84,7 +83,7 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
         $visible = "";
 }
 
-//$times = '<option value="1000">10:00 AM</option> <br /> <option value="1030">10:30 AM</option>';
+$times = '<option value="10:00:00">10:00 AM</option> <br /> <option value="10:30:00">10:30 AM</option>';
 
 if ($times == "") {
     $times = "<option>Choose Another Date</option>";
@@ -97,10 +96,10 @@ if (Auth::user()->healthCard != null) {
 if (array_key_exists("add-to-cart-button", $_POST)) {
     DB::table('cart_appointments')->insert(  [
         'clinic_id' => 1,
-        'start_time' => $_POST["times"],
+        'start_time' => $date . " " . $_POST["times"],
         'duration' => $duration,
-        'patient_id' => Auth::user()->id,
-        'physicianNumber' => 2,
+        'healthCard' => $patientId,
+        'physicianNumber' => $doctorId,
         'room_id' => 1,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);
@@ -129,7 +128,7 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>
-            <input class="form-control" type="date" id="date" name="date" value="<?php echo $date;?>" required>
+            <input class="form-control" type="date" id="date" name="date" min="<?php date_default_timezone_set('America/Toronto'); echo date("Y-m-d");?>" value="<?php echo $date;?>" required>
             <span class="error" style="color:red;"><?php echo $dateErr;?></span>
         </div>
         <div class="form-group">
@@ -158,19 +157,5 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
     </form>
 </div>
 </body>
-<script type="text/javascript">
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if(dd < 10){
-        dd ='0'+ dd
-    }
-    if(mm < 10){
-        mm ='0'+ mm
-    }
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("date").setAttribute("min", today);
-</script>
 @endsection
 </html>

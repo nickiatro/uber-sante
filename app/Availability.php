@@ -14,7 +14,7 @@ class Availability
      * @var array
      */
     protected $fillable = [
-        'id', 'physician_id', 'start_time', 'duration'
+        'id', 'physicianNumber', 'start_time', 'duration'
     ];
 
     public $timestamps = true;

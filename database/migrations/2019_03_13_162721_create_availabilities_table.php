@@ -20,7 +20,11 @@ class CreateAvailabilitiesTable extends Migration
             $table->integer('duration');
             $table->timestamps();
 
-            $table->foreign('physicianNumber')->references('id')->on('physicians');
+        });
+
+        Schema::table('appointments', function($table){
+            $table->foreign('physicianNumber')->references('physicianNumber')->on('physicians');
+
         });
     }
 

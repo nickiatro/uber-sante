@@ -15,7 +15,7 @@ class BookAppointmentsController extends Controller{
 public static function showAppointments(){
 
     $aMap = new bookAppointments_mapper();
-    $appointments = $aMap->showAppointments();
+    $appointments = $aMap->showAppointments(Auth::user()->healthCard);
     return $appointments;
 
 }
@@ -81,7 +81,7 @@ return redirect()->back();
 public static function checkoutCart(){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
-    $aMap->checkoutCart();
+    $aMap->checkoutCart(Auth::user()->healthCard);
     $aMap->cancelTransaction();
 }
     return redirect()->back();

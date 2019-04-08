@@ -11,8 +11,6 @@
 use App\Http\Controllers\BookAppointmentsController;
 
 $appointments = BookAppointmentsController::showAppointments();
-$cart = BookAppointmentsController::getCartContent(Auth::user()->id);
-
 
 ?>
 
@@ -24,13 +22,13 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
         <br />
         <table class='table table-bordered'>
             <tr style="text-align:center">
-            
+
                 <th>Clinic ID</th>
-                <th>Start Time</th>
+                <th>Date & Time</th>
                 <th>Duration</th>
-                <th>Patient ID</th>
-                <th>Physician ID</th>
-                <th>Room</th>
+                <th>Patient Health Card Number</th>
+                <th>Physician Number</th>
+                <th>Room Number</th>
             </tr>
             @foreach($appointments as $appointment)
             <tr>
@@ -38,7 +36,7 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->id);
                 <td>{{$appointment->clinic_id}}</td>
                 <td>{{$appointment->start_time}}</td>
                 <td>{{$appointment->duration}}</td>
-                <td>{{$appointment->patient_id}}</td>
+                <td>{{$appointment->healthCard}}</td>
                 <td>{{$appointment->physicianNumber}}</td>
                 <td>{{$appointment->room_id}}</td>
 

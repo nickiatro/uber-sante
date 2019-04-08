@@ -19,7 +19,7 @@ class availability_mapper{
             ->where('id', $availability->id)
             ->update(
                 [
-                'physician_id' => $availability->physician_id,
+                'physicianNumber' => $availability->physicianNumber,
                 'start_time' => $availability->start_time,
                 'duration' => $availability->duration,
                 'updated_at' => date('Y-m-d H:i:s'),   
@@ -30,7 +30,7 @@ class availability_mapper{
          DB::table('availabilities')->insert(
             [
             'id' =>  $availability->id,
-            'physician_id' => $availability->physician_id,
+            'physicianNumber' => $availability->physicianNumber,
             'start_time' => $availability->start_time,
             'duration' => $availability->duration,
             'created_at' => date('Y-m-d H:i:s'),
@@ -38,8 +38,8 @@ class availability_mapper{
             ]);
     }
 
-    public function removeAvailability($physician_id, $start_time){
-        DB::table('availabilities')->where('physician_id',$physician_id)
+    public function removeAvailability($physicianNumber, $start_time){
+        DB::table('availabilities')->where('physicianNumber',$physicianNumber)
             ->where('start_time',$start_time)->delete();
    }
 }
