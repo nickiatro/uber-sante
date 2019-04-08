@@ -4,40 +4,50 @@
 
 @section('content')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<?php
+
+use App\Http\Controllers\BookAppointmentsController;
+
+$appointments = BookAppointmentsController::showAppointments();
+
+?>
+
+
 <div class="row">
     <div class="col-md-12">
         <br />
         <center><h1>My Appointments</h1></center>
         <br />
         <table class='table table-bordered'>
-            <tr>
-                <th>Patient's name</th>
-                <th>Date</th>
-                <th>Start time</th>
-                <th>End time</th>
-                <th>Doctor</th>
-                <th>Clinic</th>
-                <th>Address</th>
-                <th>Comments</th>
-                <th>Modify/Delete an Appointment</th>
+            <tr style="text-align:center">
+
+                <th>Clinic ID</th>
+                <th>Date & Time</th>
+                <th>Duration</th>
+                <th>Patient Health Card Number</th>
+                <th>Physician Number</th>
+                <th>Room Number</th>
             </tr>
-            @foreach($appointment_list as $row)
+            @foreach($appointments as $appointment)
             <tr>
-                <td>{{$row['name']}}</td>
-                <td>{{$row['date']}}</td>
-                <td>{{$row['starttime']}}</td>
-                <td>{{$row['endtime']}}</td>
-                <td>{{$row['doctor']}}</td>
-                <td>{{$row['clinic']}}</td>
-                <td>{{$row['address']}}</td>
-                <td>{{$row['Comments']}}</td>
-                <td>
-                <button class="btn btn-primary">Modify</button>
-                <button class="btn btn-primary">Cancel</button>
-                </td>
-            </tr>
-            @endforeach
+            
+                <td>{{$appointment->clinic_id}}</td>
+                <td>{{$appointment->start_time}}</td>
+                <td>{{$appointment->duration}}</td>
+                <td>{{$appointment->healthCard}}</td>
+                <td>{{$appointment->physicianNumber}}</td>
+                <td>{{$appointment->room_id}}</td>
+
+                <td><a class="btn btn-primary">Modify</a>
+                <a class="btn btn-primary" href="{{route('appointment.cancelAppointment')}}">Cancel</a></td>
+                
+                </tr>
+                @endforeach
         </table>
+
+        
     </div>
 </div>
 @endsection

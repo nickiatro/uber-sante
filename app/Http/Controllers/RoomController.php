@@ -43,7 +43,7 @@ class RoomController extends Controller
      * @param  int  $clinic_id
      * @return Response
      */
-    public function update($id, $clinic_id, $start_time, $duration, $patient_id, $physician_id, $room_id)
+    public function update($id, $clinic_id, $start_time, $duration, $healthCard, $physicianNumber, $room_id)
     {
 		$rooms = Room::find($id);
         $rooms->clinic_id = $clinic_id;

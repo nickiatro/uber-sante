@@ -1,5 +1,9 @@
+@extends('layouts.app')
 <?php
-    if(!isset($_SESSION)){
+
+use Illuminate\Support\Facades\DB;
+
+if(!isset($_SESSION)){
         session_start();
     }
 ?>
@@ -15,18 +19,16 @@
     background-color: #fff;
     color: #636b6f;
     font-family: 'Nunito', sans-serif;
-    font-weight: 200;
+    font-weight: 400;
     height: 100vh;
     margin: 0;
     }
-
 </style>
 </head>
 <body>
 <?php
 $patientErr = $doctorErr = $typeErr = $dateErr = "";
 $patientId = $doctorId = $walkIn = $annual  = $date = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["doctor-id"])) {
         $doctorErr = "Doctor ID is required";
@@ -36,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
         }
     }
-
     if (empty($_POST["patient-id"])) {
         $patientErr = "Patient ID is required";
     } else {
@@ -45,13 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
-
     if (($_POST["date"]) == null) {
         $dateErr = "Please select a date";
     } else {
         $date = test_input($_POST["date"]);
     }
-
     if (($_POST["appointment-type"]) == "null") {
         $typeErr = "Please select a type";
     }
@@ -62,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $annual = "selected";
     }
 }
-
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -70,19 +68,49 @@ function test_input($data) {
     return $data;
 }
 
+$duration = 0;
+
+if ($walkIn == "selected"){
+    $duration = 20;
+}
+else if ($annual == "selected") {
+    $duration = 60;
+}
+
 $visible = "display:none;";
 $times = "";
-
-if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == ""))
-    {
+if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
         $visible = "";
-    }
+}
 
+$times = '<option value="10:00:00">10:00 AM</option> <br /> <option value="10:30:00">10:30 AM</option>';
+
+if ($times == "") {
+    $times = "<option>Choose Another Date</option>";
+}
+
+if (Auth::user()->healthCard != null) {
+    $patientId = Auth::user()->healthCard;
+}
+
+if (array_key_exists("add-to-cart-button", $_POST)) {
+    DB::table('cart_appointments')->insert(  [
+        'clinic_id' => 1,
+        'start_time' => $date . " " . $_POST["times"],
+        'duration' => $duration,
+        'healthCard' => $patientId,
+        'physicianNumber' => $doctorId,
+        'room_id' => 1,
+        'created_at' => date('Y-m-d H:i:s'),
+        'updated_at' => date('Y-m-d H:i:s')]);
+    header("Location: /addToCart");
+    exit;
+}
 ?>
-
-<h2 id="header" class="text-center" style="padding-bottom: 5%;">
+@section('content')
+<h1 id="header" class="text-center">
     Search for Availabilities
-</h2>
+</h1>
 
 <div class="col-lg-4 col-lg-offset-4">
 
@@ -100,7 +128,7 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>
-            <input class="form-control" type="date" id="date" name="date" value="<?php echo $date;?>" required>
+            <input class="form-control" type="date" id="date" name="date" min="<?php date_default_timezone_set('America/Toronto'); echo date("Y-m-d");?>" value="<?php echo $date;?>" required>
             <span class="error" style="color:red;"><?php echo $dateErr;?></span>
         </div>
         <div class="form-group">
@@ -112,35 +140,22 @@ if (($patientId != "" && $doctorId != "" && $date != "") && ($patientErr == "" &
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
-        <input type="submit" id="button" class="btn btn-primary" value="Search">
+        <div class="form-group">
+        <input type="submit" id="search-button" class="btn btn-primary" value="Search">
+        </div>
+        <div class="form-group">
+        <div style="<?php echo $visible;?>">
+            <label for="times">Select Appointment Time</label>
+            <select id="times" name="times" class="form-control">
+                <?php echo $times?>
+            </select>
+        </div>
+        </div>
+        <div class="form-group">
+            <input style="<?php echo $visible;?>" type="submit" name="add-to-cart-button" id="add-to-cart-button" class="btn btn-primary" value="Add to Cart">
+        </div>
     </form>
-    <div class="col-lg-6 col-lg-offset-3" style="<?php echo $visible;?>">
-        <label for="times">Select Appointment Time</label>
-        <select id="times" name="times" class="form-control">
-            <?php echo $times?>
-        </select>
-    </div>
-
 </div>
-
 </body>
-<script type="text/javascript">
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth() + 1;
-    var yyyy = today.getFullYear();
-    if(dd < 10){
-        dd ='0'+ dd
-    }
-    if(mm < 10){
-        mm ='0'+ mm
-    }
-
-    today = yyyy + '-' + mm + '-' + dd;
-    document.getElementById("date").setAttribute("min", today);
-    document.getElementById("submit").addEventListener("onclick", function() {
-
-    })
-
-</script>
+@endsection
 </html>

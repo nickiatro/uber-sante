@@ -58,8 +58,8 @@ class CreateNurseController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'accessId' => 'required|regex:/^[a-zA-Z]{3}\d{5}+$/|unique:users',
-            'email' => 'required|string|email|max:255|unique:users',
+            'accessId' => 'required|regex:/^[a-zA-Z]{3}\d{5}+$/|unique:nurses',
+            'email' => 'required|string|email|max:255|unique:nurses',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -77,6 +77,8 @@ class CreateNurseController extends Controller
             $user -> email = $data['email'];
             $user -> password = Hash::make($data['password']);
             $user -> admin_privilege = 0;
+            $user -> nurse_privilege = 1;
+            $user -> physician_privilege = 0;
 
             $nMap = new nurse_mapper();
             $nMap->registerNurse($user);

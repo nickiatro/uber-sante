@@ -37,7 +37,7 @@ class ScheduleController
         $dayEnd = clone($date)->setTime(20, 01); // Get the end of the day
 
         // Get the physicians appointments for the date
-        $appointments = Appointment::where('physician_id', $physicianId)
+        $appointments = Appointment::where('physicianNumber', $physicianId)
                                    ->where('start_time', '>', strtotime($dayStart))
                                    ->where('start_time', '<', strtotime($dayEnd))
                                    ->get();
@@ -45,7 +45,7 @@ class ScheduleController
         $schedule = array_merge($schedule, $appointments);
 
         // Get the physicians avails
-        $availabilities = Availability::where('physician_id', $physicianId);
+        $availabilities = Availability::where('physicianNumber', $physicianId);
 
         // extrapolate the availabilities to today
         foreach ($availabilities as $availability) {
@@ -64,7 +64,7 @@ class ScheduleController
         $dayStart = clone($date)->setTime(07, 59); // Get the start of the day
         $dayEnd = clone($date)->setTime(20, 01); // Get the end of the day
 
-        return Appointment::where('patient_id', $physicianId)
+        return Appointment::where('healthCard', $physicianId)
                                    ->where('start_time', '>', strtotime($dayStart))
                                    ->where('start_time', '<', strtotime($dayEnd))
                                    ->get();
