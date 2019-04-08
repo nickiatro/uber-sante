@@ -47,54 +47,6 @@
                             </div>
                         </div>
 
-                         
-                        
-
-                         <div class="form-group row">
-                            <label for="healthCard" class="col-md-4 col-form-label text-md-right">{{ __('Health Card') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="healthCard" type="text" class="form-control{{ $errors->has('healthCard') ? ' is-invalid' : '' }}" name="healthCard" value="{{ old('healthCard') }}" required>
-
-                                @if ($errors->has('healthCard'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('healthCard') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="birthday" type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required>
-
-                                @if ($errors->has('birthday'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('birthday') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                        
-
-                        <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
-                            <div class="col-md-6">
-                                <select input id="gender" type="text" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                </select>
-
-                                @if ($errors->has('gender'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group row">
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone Number') }}</label>
 
@@ -110,29 +62,97 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
-
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                             <div class="col-md-6">
-                                <select input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
-                                
-                                <option value="CA">Canada</option>
-
+                                <select input id="gender" type="text" class="form-control{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender" value="{{ old('gender') }}" required>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
                                 </select>
 
-                                @if ($errors->has('country'))
+                                @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('country') }}</strong>
+                                        <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="province" class="col-md-4 col-form-label text-md-right">{{ __('Province') }}</label>
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="province" type="text" class="form-control{{ $errors->has('province') ? ' is-invalid' : '' }}" name="province" value="{{ old('province') }}" required>
+                                <input id="birthday" type="date" max= <?php date_default_timezone_set('America/Toronto'); echo date("Y-m-d", strtotime("today - 18 years"));?> class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required>
 
+                                @if ($errors->has('birthday'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('birthday') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                         <div class="form-group row">
+                            <label for="healthCard" class="col-md-4 col-form-label text-md-right">{{ __('Health Card Number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="healthCard" type="text" class="form-control{{ $errors->has('healthCard') ? ' is-invalid' : '' }}" name="healthCard" value="{{ old('healthCard') }}" required>
+
+                                @if ($errors->has('healthCard'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('healthCard') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="street" class="col-md-4 col-form-label text-md-right">{{ __('Street') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="street" type="text" class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}" name="street" value="{{ old('street') }}" required>
+
+                                @if ($errors->has('street'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('street') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}" required>
+
+                                @if ($errors->has('city'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('city') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="province" class="col-md-4 col-form-label text-md-right">{{ __('Province/Territory') }}</label>
+
+                            <div class="col-md-6">
+                                <select input id="province" type="text" class="form-control{{ $errors->has('province') ? ' is-invalid' : '' }}" name="province" value="{{ old('province') }}" required>
+                                    <option value="BC">British Columbia</option>
+                                    <option value="AB">Alberta</option>
+                                    <option value="SK">Saskatchewan</option>
+                                    <option value="MB">Manitoba</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="QC" selected>Québec</option>
+                                    <option value="NB">New Brunswick</option>
+                                    <option value="PE">Prince Edward Island</option>
+                                    <option value="NS">Nova Scotia</option>
+                                    <option value="NL">Newfoundland and Labrador</option>
+                                    <option value="YT">Yukon</option>
+                                    <option value NT>Northwest Territories</option>
+                                    <option value="NU">Nunavut</option>
+                                </select>
                                 @if ($errors->has('province'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('province') }}</strong>
@@ -156,28 +176,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="city" class="col-md-4 col-form-label text-md-right">{{ __('City') }}</label>
+                            <label for="country" class="col-md-4 col-form-label text-md-right">{{ __('Country') }}</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control{{ $errors->has('city') ? ' is-invalid' : '' }}" name="city" value="{{ old('city') }}" required>
+                                <select input id="country" type="text" class="form-control{{ $errors->has('country') ? ' is-invalid' : '' }}" name="country" value="{{ old('country') }}" required>
+                                    <option value="CAN" selected>Canada</option>
+                                </select>
 
-                                @if ($errors->has('city'))
+                                @if ($errors->has('country'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('city') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="street" class="col-md-4 col-form-label text-md-right">{{ __('Street') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="street" type="text" class="form-control{{ $errors->has('street') ? ' is-invalid' : '' }}" name="street" value="{{ old('street') }}" required>
-
-                                @if ($errors->has('street'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('street') }}</strong>
+                                        <strong>{{ $errors->first('country') }}</strong>
                                     </span>
                                 @endif
                             </div>

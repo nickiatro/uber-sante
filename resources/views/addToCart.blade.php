@@ -50,6 +50,7 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->healthCard);
         
         </table>
 
+        <a class="btn btn-primary" href="{{route('patient-create-appointment')}}">Book Another Appointment</a>
         <a class="btn btn-primary" href="{{route('appointment.checkoutCart')}}">Checkout Cart</a>
         <a class="btn btn-primary" href="{{route('appointment.cancelTransaction')}}">Cancel Transaction</a>  
     </div>
