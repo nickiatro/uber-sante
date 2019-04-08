@@ -150,7 +150,7 @@
                                     <option value="NS">Nova Scotia</option>
                                     <option value="NL">Newfoundland and Labrador</option>
                                     <option value="YT">Yukon</option>
-                                    <option value NT>Northwest Territories</option>
+                                    <option value="NT">Northwest Territories</option>
                                     <option value="NU">Nunavut</option>
                                 </select>
                                 @if ($errors->has('province'))
