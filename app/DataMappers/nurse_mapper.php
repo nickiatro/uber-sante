@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Nurse;
-class nurse_mapper{
+class nurse_mapper  {
+  
 	public static function update_nurse(Nurse $user){
          DB::table('nurses')
             ->where('id', $user->id)
