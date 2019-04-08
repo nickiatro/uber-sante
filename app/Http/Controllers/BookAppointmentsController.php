@@ -81,7 +81,7 @@ return redirect()->back();
 public static function checkoutCart(){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
-    $aMap->checkoutCart();
+    $aMap->checkoutCart(Auth::user()->healthCard);
     $aMap->cancelTransaction();
 }
     return redirect()->back();

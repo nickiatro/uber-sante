@@ -25,10 +25,10 @@ $cart = BookAppointmentsController::getCartContent(Auth::user()->healthCard);
             <tr style="text-align:center">
             
                 <th>Clinic ID</th>
-                <th>Start Time</th>
+                <th>Date & Time</th>
                 <th>Duration</th>
-                <th>Patient ID</th>
-                <th>Physician ID</th>
+                <th>Patient Health Card Number</th>
+                <th>Physician Number</th>
                 <th>Room</th>
             </tr>
             @foreach($cart as $c)

@@ -50,21 +50,22 @@ public function cancelAppointment(){
     
    }
 
-   public function checkoutCart(){
-      $cart =  DB::table('cart_appointments')->where('id', Auth::id())->get();
+   public function checkoutCart($healthCard){
+        $cart = DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->get();
 
-      DB::table('appointments')->insert(
-        [
-            'clinic_id' => $cart->get('clinic_id'),
-           'start_time' => $cart->get('start_time'),
-           'duration' => $cart->get('duration'),
-           'healthCard' => Auth::user()->id(),
-           'physicianNumber' => $cart->get('physicianNumber'),
-           'room_id' => $cart->get('room_id'),
-           'created_at' => date('Y-m-d H:i:s'),
-               'updated_at' => date('Y-m-d H:i:s')]);
+       foreach ($cart as $c) {
+           DB::table('appointments')->insert([
+               'clinic_id' => $c->clinic_id,
+               'start_time' => $c->start_time,
+               'duration' => $c->duration,
+               'healthCard' => $c->healthCard,
+               'physicianNumber' => $c->physicianNumber,
+               'room_id' => $c->room_id
+           ]);
+       }
 
-                    }
+       DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->truncate();
+   }
 
    }
 

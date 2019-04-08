@@ -16,7 +16,7 @@ class CreateCartAppointmentsTable extends Migration
         Schema::create('cart_appointments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('clinic_id')->default(0);
-            $table->integer('start_time');
+            $table->dateTime('start_time');
             $table->integer('duration');
             $table->integer('healthCard')->unsigned()->nullable();;
             $table->integer('physicianNumber')->unsigned()->nullable();;
