@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataMappers\physician_mapper;
 
-class PhysicianController extends Controller
+class PhysicianController extends Controller implements GeneralUserController
 {
     /**
      * Show the profile for the given user.

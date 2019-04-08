@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataMappers\user_mapper;
 
-class UserController extends Controller
+class UserController extends Controller implements GeneralUserController
 {
     /**
      * Show the profile for the given user.
