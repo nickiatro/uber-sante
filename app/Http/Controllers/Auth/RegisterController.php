@@ -56,7 +56,7 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'healthCard' => 'required|regex:/^[A-Z]{4}\s\d{4}\s\d{4}+$/|unique:users',
-            'birthday' => 'required|digits:6',
+            'birthday' => 'required',
             'gender' => 'required|string|max:255',
             'phone' => 'required|digits:10',
             'country' => 'required|string|max:255',
