@@ -70,10 +70,10 @@ public static function cancelTransaction(){
     return redirect()->back();
 }
 
-public static function cancelAppointment(){
+public static function cancelAppointment($appointmentId){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
-    $aMap->cancelAppointment(Auth::user()->healthCard);
+    $aMap->cancelAppointment($appointmentId);
 }
 return redirect()->back();
 }
