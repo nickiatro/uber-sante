@@ -60,7 +60,9 @@ public function cancelAppointment($healthCard){
                'duration' => $c->duration,
                'healthCard' => $c->healthCard,
                'physicianNumber' => $c->physicianNumber,
-               'room_id' => $c->room_id
+               'room_id' => $c->room_id,
+               'created_at' => $c->created_at,
+               'updated_at' => $c->updated_at
            ]);
        }
 

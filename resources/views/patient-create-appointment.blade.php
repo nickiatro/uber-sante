@@ -94,6 +94,7 @@ if (Auth::user()->healthCard != null) {
 }
 
 if (array_key_exists("add-to-cart-button", $_POST)) {
+    date_default_timezone_set('America/Toronto');
     DB::table('cart_appointments')->insert(  [
         'clinic_id' => 1,
         'start_time' => $date . " " . $_POST["times"],
