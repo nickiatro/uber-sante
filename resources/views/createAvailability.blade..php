@@ -94,7 +94,7 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         'duration' => $duration . " " . $time,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);
-    header("Location: /createAvailability");
+    header("Location: /myAvailabilities");
     exit;
 }
 ?>
