@@ -27,9 +27,9 @@ class bookAppointments_mapper{
                'updated_at' => date('Y-m-d H:i:s')]);
    }
 
-    public function removeAppointmentFromCart($user){
-        DB::table('cart_appointments')->where('id',Auth::id())->where('user',$user)->delete();
-   }
+    public function removeAppointmentFromCart($appointmentId){
+        DB::table('cart_appointments')->where('id','=', $appointmentId)->delete();
+    }
 
    public function showAppointments($healthCard){
     return DB::table('appointments')->where('healthCard', '=', $healthCard)->get();
