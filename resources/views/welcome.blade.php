@@ -108,11 +108,14 @@
 			</div>
 			<div class="links">
 				<a href="addToCart"> Appointment Cart</a>
-            @if (Auth::user()->physician_privilege == "1")
+            
             <div class="links">
-				<a href="view">My Availabilities</a>
+				<a href="createAvailability">Create Availabilities</a>
 			</div>
-            @endif
+
+            <div class="links">
+				<a href="myAvailabilities">View Availabilities</a>
+			</div>
 
 			</div>
                 	<div class="links">

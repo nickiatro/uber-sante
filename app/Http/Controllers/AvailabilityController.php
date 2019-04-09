@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use App\DatavMappers\availability_mapper;
+use App\DataMappers\availability_mapper;
 use App\Availability;
 
 class AvailabilityController extends Controller
 {    
-    public static function showAvailability($start_time)
+    public static function showAvailability()
     {
       $avMap = new availability_mapper();
-      $availabilities = $avMap->showAvailability($start_time);
+      $availabilities = $avMap->showAvailability();
       return $availabilities;
     }
     
