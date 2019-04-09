@@ -65,7 +65,7 @@ public static function removeAppointmentFromCart($appointment_id){
 public static function cancelTransaction(){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
-    $aMap->cancelTransaction();
+    $aMap->cancelTransaction(Auth::user()->healthCard);
 }
     return redirect()->back();
 }
@@ -73,7 +73,7 @@ public static function cancelTransaction(){
 public static function cancelAppointment(){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
-    $aMap->cancelAppointment();
+    $aMap->cancelAppointment(Auth::user()->healthCard);
 }
 return redirect()->back();
 }
@@ -82,7 +82,6 @@ public static function checkoutCart(){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
     $aMap->checkoutCart(Auth::user()->healthCard);
-    $aMap->cancelTransaction();
 }
     return redirect()->back();
 }

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataMappers\nurse_mapper;
 
-class NurseController extends Controller
+class NurseController extends Controller implements GeneralUserController
 {
     /**
      * Show the profile for the given user.
@@ -32,7 +32,7 @@ class NurseController extends Controller
 
     public function loginNurse()
     {
-        return view('nurse.login');
+        return view('login.nurse');
     }
 
     public function home()
