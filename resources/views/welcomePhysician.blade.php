@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -87,9 +87,9 @@
         <div class="flex-center position-ref full-height">
        
 
-            @if (Route::has('login'))
+            @if (Route::has('physician.login'))
                 <div class="top-center links">
-                    @auth('web')
+                    @auth('physician')
                 <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -97,7 +97,7 @@
                                 </a>
                                 
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('physician.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
 
@@ -108,6 +108,15 @@
 			</div>
 			<div class="links">
 				<a href="addToCart"> Appointment Cart</a>
+            
+            <div class="links">
+				<a href="createAvailability">Create Availabilities</a>
+			</div>
+
+            <div class="links">
+				<a href="myAvailabilities">View Availabilities</a>
+			</div>
+
 			</div>
                 	<div class="links">
 				<a href="view">My Appointments</a>
@@ -125,7 +134,7 @@
                            		<div class="links">
 						<a href="{{ route('createPhysician') }}" class="b">Create Physician</a>
 					</div>
-                            	<div class="links">
+                            		<div class="links">
 						<a href="{{ route('createNurse') }}" class="b">Create Nurse</a>
 					</div>
 				</div>

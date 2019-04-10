@@ -30,21 +30,5 @@ class NurseController extends Controller implements GeneralUserController
 
     }
 
-    public function loginNurse()
-    {
-        return view('login.nurse');
-    }
-
-    public function home()
-  {
-    return view('nurse');
-  }
-
-    public function logout()
-  {
-    Auth::guard('nurse')->logout();
-
-    return redirect('/login/nurse'); 
-  }
 
 } 

@@ -17,10 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/doctor', function () {
+    return view('welcomePhysician');
+});
+
 Auth::routes();
 Route::view('/payment','payment');
 Route::view('/admin', 'admin');
 Route::view('/welcome', 'welcome');
+Route::view('/welcomePhysician', 'welcomePhysician');
 Route::view('/patient-create-appointment','patient-create-appointment');
 Route::view('/createAvailability','createAvailability');
 Route::view('/myAvailabilities','myAvailabilities');
@@ -34,8 +39,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/login/physician', 'Auth\LoginController@showLoginForm');
-Route::post('/login/physician', 'Auth\LoginController@validateLoginPhysicians')->name('login.physician');
+Route::get('/physician/login', 'Auth\physicianLoginController@showLoginForm')->name('physician.login');
+Route::post('/physician/login', 'Auth\physicianLoginController@login')->name('physician.login.post');
+Route::post('/physician/logout', 'Auth\physicianLoginController@logout')->name('physician.logout');
+
+Route::group(['middleware'=>'physician'], function() {
+    Route::get('/physician/home', 'physician\HomeController@index');
+});
 
 Route::get('/login/nurse', 'Auth\LoginController@showLoginForm');
 Route::post('/login/nurse', 'Auth\LoginController@validateLoginNurses')->name('login.nurse');
