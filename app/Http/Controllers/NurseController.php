@@ -25,7 +25,7 @@ class NurseController extends Controller implements GeneralUserController
        return redirect('/admin');
     }   
         else{
-            return redirect('/');
+            return redirect('/nurses');
         }
 
     }

@@ -146,7 +146,7 @@
                 <div class="card-header flip">{{ __('Login as a nurse') }}</div>
 
                 <div class="card-body panel" style="display: none;">
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('nurse.login.post') }}">
                         @csrf
 
                         <div class="form-group row">

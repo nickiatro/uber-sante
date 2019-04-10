@@ -37,7 +37,7 @@ class CreateNurseController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/nurses';
 
     /**
      * Create a new controller instance.

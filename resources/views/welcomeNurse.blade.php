@@ -87,17 +87,17 @@
         <div class="flex-center position-ref full-height">
        
 
-            @if (Route::has('physician.login'))
+            @if (Route::has('nurse.login'))
                 <div class="top-center links">
-                    @auth('physician')
-                <a class="dropdown-item" href="{{ route('physician.logout') }}"
+                    @auth('nurse')
+                <a class="dropdown-item" href="{{ route('nurse.logout') }}"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                                 </a>
                                 
 
-                                <form id="logout-form" action="{{ route('physician.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('nurse.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
 
