@@ -22,6 +22,7 @@ Route::view('/payment','payment');
 Route::view('/admin', 'admin');
 Route::view('/welcome', 'welcome');
 Route::view('/patient-create-appointment','patient-create-appointment');
+Route::view('/patient-modify-appointment','patient-modify-appointment');
 Route::view('/addToCart', 'addToCart');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -54,6 +55,10 @@ Route::resource('rooms', 'RoomController')->only(['store', 'show','update','dest
 Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
 })->name('patient-create-appointment');
+
+Route::post('patient-modify-appointment', function() {
+    return view('patient-modify-appointment');
+})->name('patient-modify-appointment');
 
 Route::get('/addAppointmentToCart/{appointment}', 'BookAppointmentsController@addAppointmentToCart')->name('appointment.addToCart');
 Route::get('/removeAppointmentFromCart{appointmentId}','BookAppointmentsController@removeAppointmentFromCart')->name('appointment.removeFromCart');
