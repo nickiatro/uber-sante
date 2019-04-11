@@ -104,7 +104,7 @@
 			<div class="middle-center links"></div>
 
 			<div class="links">
-				<a href="patient-create-appointment"> Book Appointment</a>
+				<a href="physician-create-appointment"> Book Appointment</a>
 			</div>
 			<div class="links">
 				<a href="addToCartPhysician"> Appointment Cart</a>

@@ -32,6 +32,7 @@ Route::view('/welcome', 'welcome');
 Route::view('/welcomePhysician', 'welcomePhysician');
 Route::view('/welcomeNurse', 'welcomeNurse');
 Route::view('/patient-create-appointment','patient-create-appointment');
+Route::view('/physician-create-appointment','physician-create-appointment');
 Route::view('/createAvailability','createAvailability');
 Route::view('/myAvailabilities','myAvailabilities');
 Route::view('/addToCart', 'addToCart');
@@ -80,6 +81,10 @@ Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
 })->name('patient-create-appointment');
 
+Route::post('physician-create-appointment', function() {
+    return view('physician-create-appointment');
+})->name('physician-create-appointment');
+
 Route::post('createAvailability', function() {
     return view('createAvailability');
 })->name('createAvailability');
@@ -87,7 +92,9 @@ Route::post('createAvailability', function() {
 Route::get('/addAppointmentToCart/{appointment}', 'BookAppointmentsController@addAppointmentToCart')->name('appointment.addToCart');
 Route::get('/removeAppointmentFromCart{appointmentId}','BookAppointmentsController@removeAppointmentFromCart')->name('appointment.removeFromCart');
 Route::get('/cancelTransaction','BookAppointmentsController@cancelTransaction')->name('appointment.cancelTransaction');
+Route::get('/cancelTransaction','BookAppointmentsController@cancelTransactionPhysician')->name('appointment.cancelTransactionPhysician');
 Route::get('/cancelAppointment/{appointmentId}','BookAppointmentsController@cancelAppointment')->name('appointment.cancelAppointment');
 Route::get('/checkoutCart','BookAppointmentsController@checkoutCart')->name('appointment.checkoutCart');
+Route::get('/checkoutCart','BookAppointmentsController@checkoutCartPhysician')->name('appointment.checkoutCartPhysician');
 Route::get('/updateAppointment{appointment}','BookAppointmentsController@updateAppointment')->name('appointment.updateAppointment');
 

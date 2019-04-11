@@ -11,7 +11,7 @@
 use App\Http\Controllers\BookAppointmentsController;
 
 $appointments = BookAppointmentsController::showAppointmentsPhysician();
-$cart = BookAppointmentsController::getCartContentPhysician(auth('physician')->user()->physicianNumber);
+$cart = BookAppointmentsController::getCartContentPhysician(Auth::guard('physician')->user()->physicianNumber);
 
 ?>
 
@@ -43,16 +43,16 @@ $cart = BookAppointmentsController::getCartContentPhysician(auth('physician')->u
             
                 <td>
                 <a class="btn btn-primary">Modify</a>
-                <a href="{{route('appointment.cancelTransaction')}}" class="btn btn-primary">Cancel</a>
+                <a href="{{route('appointment.cancelTransactionPhysician')}}" class="btn btn-primary">Cancel</a>
                 </td>
             </tr>
             @endforeach
         
         </table>
 
-        <a class="btn btn-primary" href="{{route('patient-create-appointment')}}">Book Another Appointment</a>
-        <a class="btn btn-primary" href="{{route('appointment.checkoutCart')}}">Checkout Cart</a>
-        <a class="btn btn-primary" href="{{route('appointment.cancelTransaction')}}">Cancel Transaction</a>  
+        <a class="btn btn-primary" href="{{route('physician-create-appointment')}}">Book Another Appointment</a>
+        <a class="btn btn-primary" href="{{route('appointment.checkoutCartPhysician')}}">Checkout Cart</a>
+        <a class="btn btn-primary" href="{{route('appointment.cancelTransactionPhysician')}}">Cancel Transaction</a>  
     </div>
 </div>
 @endsection

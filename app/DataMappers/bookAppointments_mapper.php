@@ -45,7 +45,12 @@ class bookAppointments_mapper{
 
    public function cancelTransaction($healthCard){
        DB::table('cart_appointments')->where('healthCard','=', $healthCard)->delete();
-}
+    }
+
+    public function cancelTransactionPhysician($physicianNumber){
+        DB::table('cart_appointments')->where('physicianNumber','=', $physicianNumber)->delete();
+    }
+
 
 public function cancelAppointment($appointmentId){
     DB::table('appointments')->where('id','=', $appointmentId)->delete();
@@ -76,6 +81,25 @@ public function cancelAppointment($appointmentId){
 
        DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->truncate();
    }
+
+   public function checkoutCartPhysician($physicianNumber){
+    $cart = DB::table('cart_appointments')->where('physicianNumber','=' , $physicianNumber)->get();
+
+   foreach ($cart as $c) {
+       DB::table('appointments')->insert([
+           'clinic_id' => $c->clinic_id,
+           'start_time' => $c->start_time,
+           'duration' => $c->duration,
+           'healthCard' => $c->healthCard,
+           'physicianNumber' => $c->physicianNumber,
+           'room_id' => $c->room_id,
+           'created_at' => $c->created_at,
+           'updated_at' => $c->updated_at
+       ]);
+   }
+
+   DB::table('cart_appointments')->where('physicianNumber','=' , $physicianNumber)->truncate();
+}
 
    }
 

@@ -28,17 +28,10 @@ if(!isset($_SESSION)){
 </head>
 <body>
 <?php
-$patientErr = $doctorErr = $typeErr = $dateErr = $timeErr= "";
-$patientId = $doctorId = $walkIn = $annual  = $date = "";
+$typeErr = $dateErr = $timeErr= "";
+$walkIn = $annual  = $date = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["doctor-id"])) {
-        $doctorErr = "Doctor ID is required";
-    } else {
-        $doctorId = test_input($_POST["doctor-id"]);
-        if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
-            $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
-        }
-    }
+
     if (($_POST["date"]) == null) {
         $dateErr = "Please select a date";
     } else {
@@ -83,13 +76,10 @@ if ($time == "") {
     $time = "<option>Choose Another Date</option>";
 }
 
-if (Auth::user()->healthCard != null) {
-    $patientId = Auth::user()->healthCard;
-}
 
 if (array_key_exists("add-to-cart-button", $_POST)) {
     DB::table('availabilities')->insert(  [
-        'physicianNumber' => $doctorId,
+        'physicianNumber' => Auth::guard('physician')->user()->physicianNumber,
         'start_time' => $date,
         'duration' => $duration . " " . $time,
         'created_at' => date('Y-m-d H:i:s'),
@@ -111,11 +101,7 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
 
     <form method= "post" action="{{route('createAvailability')}}">
         @csrf
-        <div class="form-group">
-            <label for="date">Physician Permit Number</label>
-            <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>" required>
-            <span class="error" style="color: red;"><?php echo $doctorErr;?></span>
-        </div>
+       
         <div class="form-group">
         <label for="date">Choose an Appointment Date</label>
             <input class="form-control" type="date" id="date" name="date" 

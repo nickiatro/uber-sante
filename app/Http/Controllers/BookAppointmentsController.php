@@ -23,7 +23,7 @@ public static function showAppointments(){
 public static function showAppointmentsPhysician(){
 
     $aMap = new bookAppointments_mapper();
-    $appointments = $aMap->showAppointments(auth('physician')->user()->physicianNumber);
+    $appointments = $aMap->showAppointments(Auth::guard('physician')->user()->physicianNumber);
     return $appointments;
 
 }
@@ -85,6 +85,15 @@ public static function cancelTransaction(){
     return redirect()->back();
 }
 
+public static function cancelTransactionPhysician(){
+    if (Auth::guard('physician')->user()->admin_privilege == "0") {
+    $aMap = new bookAppointments_mapper();
+    $aMap->cancelTransaction(Auth::guard('physician')->user()->physicianNumber);
+}
+    return redirect()->back();
+}
+
+
 public static function cancelAppointment($appointmentId){
     if (Auth::user()->admin_privilege == "0") {
     $aMap = new bookAppointments_mapper();
@@ -100,6 +109,15 @@ public static function checkoutCart(){
 }
     return redirect()->back();
 }
+
+public static function checkoutCartPhysician(){
+    if (Auth::guard('physician')->user()->admin_privilege == "0") {
+    $aMap = new bookAppointments_mapper();
+    $aMap->checkoutCart(Auth::guard('physician')->user()->physicianNumber);
+}
+    return redirect()->back();
+}
+
 
 public static function getAllAppointments($user){
     $aMap = new bookAppointments_mapper();
