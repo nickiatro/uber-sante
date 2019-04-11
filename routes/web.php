@@ -96,7 +96,7 @@ Route::post('createAvailability', function() {
 Route::get('/addAppointmentToCart/{appointment}', 'BookAppointmentsController@addAppointmentToCart')->name('appointment.addToCart');
 Route::get('/removeAppointmentFromCart{appointmentId}','BookAppointmentsController@removeAppointmentFromCart')->name('appointment.removeFromCart');
 Route::get('/cancelTransaction','BookAppointmentsController@cancelTransaction')->name('appointment.cancelTransaction');
-Route::get('/removeAvailability','AvailabilityController@removeAvailability')->name('availability.removeAvailability');
+Route::get('/removeAvailability{availabilityId}','AvailabilityController@removeAvailability')->name('availability.removeAvailability');
 
 
 Route::get('/cancelTransactionPhysician','BookAppointmentsController@cancelTransactionPhysician')->name('appointment.cancelTransactionPhysician');

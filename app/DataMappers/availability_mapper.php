@@ -8,7 +8,8 @@ class availability_mapper{
 
     public function showAvailability($user){
 
-     return DB::table('availabilities')->where('physicianNumber', '=', $physicianNumber)->get();
+     //return DB::table('availabilities')->where('physicianNumber', '=', $physicianNumber)->get();
+     return DB::table('availabilities')->get();
     }
 
 	public function updateAvailability(Availability $availability){
@@ -35,9 +36,8 @@ class availability_mapper{
             ]);
     }
 
-    public function removeAvailability($physicianNumber, $start_time){
-        DB::table('availabilities')->where('physicianNumber',$physicianNumber)
-            ->where('start_time',$start_time)->delete();
+    public function removeAvailability($availabilityId){
+        DB::table('availabilities')->where('id','=', $availabilityId)->delete();
    }
 }
 ?>
