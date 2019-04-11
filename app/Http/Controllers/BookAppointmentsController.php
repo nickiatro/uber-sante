@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\DataMappers\bookAppointments_mapper;
 use App\Appointment;
+use App\BookedAppointment;
 
 class BookAppointmentsController extends Controller{
 
@@ -42,17 +43,13 @@ public static function getCartContentPhysician($user){
     return $appointments;
 }
 
-public static function updateAppointment(){
+public static function updateAppointment($appointment){
 
     if (Auth::user()->admin_privilege == "0"){
         $aMap = new bookAppointments_mapper();
-        $aMap->updateAppointment($appointment_id);
-        
+        $aMap->updateAppointment($appointment);        
         }
-
-        return $appointments;
-
-
+    return redirect()->back();
 }
 
 
