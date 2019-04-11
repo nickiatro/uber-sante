@@ -56,12 +56,19 @@ public function cancelAppointment($appointmentId){
     DB::table('appointments')->where('id','=', $appointmentId)->delete();
 }
 
-   public function updateAppointment(){
-        DB::table('cart_appointments')->where('id', $data->get('id'))->update([
-            'physicianNumber' => $data->get('physicianNumber'),
-        ]);
-    
-   }
+public function updateAppointment($appointment){
+    DB::table('appointments')
+    ->where('id', $appointment->id)
+    ->update([
+        'clinic_id' => $appointment->clinic_id,
+        'start_time' => $appointment->start_time,
+        'duration' => $appointment->duration,
+        'healthCard' => $appointment->healthCard,
+        'physicianNumber' => $appointment->physicianNumber,
+        'room_id' => $appointment->room_id,
+        'updated_at' => date('Y-m-d H:i:s'),    
+    ]);    
+}
 
    public function checkoutCart($healthCard){
         $cart = DB::table('cart_appointments')->where('healthCard','=' , $healthCard)->get();
