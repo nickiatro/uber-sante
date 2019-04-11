@@ -95,15 +95,17 @@ if (Auth::user()->healthCard != null) {
 
 if (array_key_exists("add-to-cart-button", $_POST)) {
     date_default_timezone_set('America/Toronto');
-    DB::table('cart_appointments')->insert(  [
+    $collection = collect([
+        'id' => $aptId,
         'clinic_id' => 1,
         'start_time' => $date . " " . $_POST["times"],
         'duration' => $duration,
         'healthCard' => $patientId,
         'physicianNumber' => $doctorId,
-        'room_id' => 1,
-        'created_at' => date('Y-m-d H:i:s'),
-        'updated_at' => date('Y-m-d H:i:s')]);
+        'room_id' => 1		
+    ]);
+   // < action="{{route('appointment.updateAppointment', ['appointment'=> $collection->id ])}}">
+   // Need to perform this action somehow
     header("Location: /addToCart");
     exit;
 }
