@@ -20,6 +20,14 @@ public static function showAppointments(){
 
 }
 
+public static function showAppointmentsPhysician(){
+
+    $aMap = new bookAppointments_mapper();
+    $appointments = $aMap->showAppointments(Auth::user()->physicianNumber);
+    return $appointments;
+
+}
+
 public static function getCartContent($user){
 
     $aMap = new bookAppointments_mapper();

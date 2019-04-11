@@ -35,10 +35,12 @@ Route::view('/patient-create-appointment','patient-create-appointment');
 Route::view('/createAvailability','createAvailability');
 Route::view('/myAvailabilities','myAvailabilities');
 Route::view('/addToCart', 'addToCart');
+Route::view('/addToCartPhysician', 'addToCartPhysician');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/view', 'view');
+Route::view('/viewPhysician', 'viewPhysician');
 Route::view('/help', 'help');
 Auth::routes();
 

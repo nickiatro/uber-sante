@@ -107,7 +107,7 @@
 				<a href="patient-create-appointment"> Book Appointment</a>
 			</div>
 			<div class="links">
-				<a href="addToCart"> Appointment Cart</a>
+				<a href="addToCartPhysician"> Appointment Cart</a>
             
             <div class="links">
 				<a href="createAvailability">Create Availabilities</a>
@@ -119,7 +119,7 @@
 
 			</div>
                 	<div class="links">
-				<a href="view">My Appointments</a>
+				<a href="viewPhysician">My Appointments</a>
 			</div>
 
                     @else

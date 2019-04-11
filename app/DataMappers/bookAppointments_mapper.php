@@ -10,6 +10,10 @@ class bookAppointments_mapper{
         return DB::table('cart_appointments')->where('healthCard', $user)->get();
     }
 
+    public function getCartContentPhysician($user){
+        return DB::table('cart_appointments')->where('physicianNumber', $user)->get();
+    }
+
     public static function getAllAppointments($user){
     	return DB::table('appointments')->where('id', $id)->get();
     }
@@ -33,6 +37,10 @@ class bookAppointments_mapper{
 
    public function showAppointments($healthCard){
     return DB::table('appointments')->where('healthCard', '=', $healthCard)->get();
+   }
+
+   public function showAppointmentsPhysician($physicianNumber){
+    return DB::table('appointments')->where('physicianNumber', '=', $physicianNumber)->get();
    }
 
    public function cancelTransaction($healthCard){

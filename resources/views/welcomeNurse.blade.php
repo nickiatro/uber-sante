@@ -108,14 +108,6 @@
 			</div>
 			<div class="links">
 				<a href="addToCart"> Appointment Cart</a>
-            
-            <div class="links">
-				<a href="createAvailability">Create Availabilities</a>
-			</div>
-
-            <div class="links">
-				<a href="myAvailabilities">View Availabilities</a>
-			</div>
 
 			</div>
                 	<div class="links">
