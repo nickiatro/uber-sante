@@ -18,9 +18,9 @@ class CreateCartAppointmentsTable extends Migration
             $table->integer('clinic_id')->default(0);
             $table->dateTime('start_time');
             $table->integer('duration');
-            $table->integer('healthCard')->unsigned()->nullable();;
-            $table->integer('physicianNumber')->unsigned()->nullable();;
-            $table->integer('room_id')->default(0);;
+            $table->integer('healthCard')->unsigned()->nullable();
+            $table->integer('physicianNumber')->unsigned()->nullable();
+            $table->integer('room_id')->default(0);
             $table->timestamps();
 
         });

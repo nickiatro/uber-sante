@@ -26,26 +26,9 @@ class PhysicianController extends Controller implements GeneralUserController
        return redirect('/admin');
     }   
         else{
-            return redirect('/');
+            return redirect('/doctor');
         }
 
     }
-
-    public function loginPhysician()
-    {
-        return view('physician.login');
-    }
-
-    public function home()
-  {
-    return view('physician');
-  }
-
-    public function logout()
-  {
-    Auth::guard('physician')->logout();
-
-    return redirect('/login/physician'); 
-  }
 
 } 
