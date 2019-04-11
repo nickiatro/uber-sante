@@ -32,6 +32,7 @@ Route::view('/welcome', 'welcome');
 Route::view('/welcomePhysician', 'welcomePhysician');
 Route::view('/welcomeNurse', 'welcomeNurse');
 Route::view('/patient-create-appointment','patient-create-appointment');
+Route::view('/patient-modify-appointment','patient-modify-appointment');
 Route::view('/physician-create-appointment','physician-create-appointment');
 Route::view('/createAvailability','createAvailability');
 Route::view('/myAvailabilities','myAvailabilities');
@@ -81,6 +82,9 @@ Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
 })->name('patient-create-appointment');
 
+Route::post('patient-modify-appointment', function() {
+    return view('patient-modify-appointment');
+})->name('patient-modify-appointment');
 Route::post('physician-create-appointment', function() {
     return view('physician-create-appointment');
 })->name('physician-create-appointment');
