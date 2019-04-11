@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Availability;
 class availability_mapper{
 
-    public function showAvailability(){
+    public function showAvailability($user){
 
-     return DB::table('availabilities')->get();
+     return DB::table('availabilities')->where('physicianNumber', '=', $physicianNumber)->get();
     }
 
 	public function updateAvailability(Availability $availability){

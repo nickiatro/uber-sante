@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class AvailabilityController extends Controller
     public static function showAvailability()
     {
       $avMap = new availability_mapper();
-      $availabilities = $avMap->showAvailability();
+      $availabilities = $avMap->showAvailability(Auth::guard('physician')->user()->physicianNumber);
       return $availabilities;
     }
     

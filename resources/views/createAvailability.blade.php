@@ -72,16 +72,12 @@ else if ($annual == "selected") {
 
 $time = "";
 
-if ($time == "") {
-    $time = "<option>Choose Another Date</option>";
-}
-
 
 if (array_key_exists("add-to-cart-button", $_POST)) {
     DB::table('availabilities')->insert(  [
         'physicianNumber' => Auth::guard('physician')->user()->physicianNumber,
-        'start_time' => $date,
-        'duration' => $duration . " " . $time,
+        'start_time' => $date . " " . $time,
+        'duration' => $duration ,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);
     header("Location: /myAvailabilities");

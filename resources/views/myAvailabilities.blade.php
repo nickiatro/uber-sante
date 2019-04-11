@@ -35,7 +35,7 @@ $availabilities = AvailabilityController::showAvailability();
                 <td>{{$availability->duration}}</td>
 
                 <td><a class="btn btn-primary">Modify</a>
-                <a class="btn btn-primary" href="{{route('appointment.cancelAppointment')}}">Cancel</a></td>
+                <a class="btn btn-primary" href="{{route('availability.removeAvailability')}}">Remove</a></td>
                 
                 </tr>
                 @endforeach
