@@ -15,7 +15,7 @@ class CreateAvailabilitiesTable extends Migration
     {
         Schema::create('availabilities', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('physicianNumber');
+            $table->integer('physicianNumber')->unsigned()->nullable();
             $table->dateTime('start_time');
             $table->integer('duration');
             $table->timestamps();

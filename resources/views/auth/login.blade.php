@@ -81,14 +81,14 @@
                 <div class="card-header flip">{{ __('Login as a physician') }}</div>
 
                 <div class="card-body panel" style="display: none">
-                    <form method="POST" action="{{ route('login.physician') }}">
+                    <form method="POST" action="{{ route('physician.login.post') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Physician Permit Number') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Physician Permit Number (Email Address)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
@@ -146,14 +146,14 @@
                 <div class="card-header flip">{{ __('Login as a nurse') }}</div>
 
                 <div class="card-body panel" style="display: none;">
-                    <form method="POST" action="{{ route('login.nurse') }}">
+                    <form method="POST" action="{{ route('nurse.login.post') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Access ID') }}</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">{{ __('Access ID (Email Address)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

@@ -27,20 +27,28 @@ if(!isset($_SESSION)){
 </head>
 <body>
 <?php
-$doctorErr = $typeErr = $dateErr = "";
-$doctorId = $walkIn = $annual  = $date = "";
+$patientErr = $typeErr = $dateErr = "";
+$patientId = $walkIn = $annual  = $date = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["doctor-id"])) {
-        $doctorErr = "Doctor ID is required";
+    if (empty($_POST["patient-id"])) {
+        $patientErr = "Patient ID is required";
     } else {
-        $doctorId = test_input($_POST["doctor-id"]);
-        if ((!preg_match("/^[0-9][0-9]*$/",$doctorId))||(strlen($_POST["doctor-id"])) != 7) {
-            $doctorErr = "Please enter a valid Physician Permit Number (e.g., 2345679)";
+        $patientId = test_input($_POST["patient-id"]);
+        if (!preg_match("/^[A-Z]{4}\s\d{4}\s\d{4}+$/",$patientId)) {
+            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
         }
     }
 
     if (($_POST["date"]) == null) {
-        $dateErr = "Please select a date";
+        $dateErr = "Please select a date";    if (empty($_POST["patient-id"])) {
+        $patientErr = "Patient ID is required";
+    } else {
+        $patientId = test_input($_POST["patient-id"]);
+        if (!preg_match("/^[A-Z]{4}\s\d{4}\s\d{4}+$/",$patientId)) {
+            $patientErr = "Please enter a valid Health Card Number (e.g., LOUX 0803 2317)";
+        }
+    }
+
     } else {
         $date = test_input($_POST["date"]);
     }
@@ -72,7 +80,7 @@ else if ($annual == "selected") {
 
 $visible = "display:none;";
 $times = "";
-if (($doctorId != "" && $date != "" && $doctorErr == "" && $typeErr == "" && $dateErr == "")) {
+if (($patientId != "" && $date != "" && $patientErr == "" && $typeErr == "" && $dateErr == "")) {
         $visible = "";
 }
 
@@ -89,12 +97,12 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         'clinic_id' => 1,
         'start_time' => $date . " " . $_POST["times"],
         'duration' => $duration,
-        'healthCard' => Auth::user()->healthCard,
-        'physicianNumber' => $doctorId,
+        'healthCard' => $patientId,
+        'physicianNumber' => Auth::guard('physician')->user()->physicianNumber,
         'room_id' => 1,
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);
-    header("Location: /addToCart");
+    header("Location: /addToCartPhysician");
     exit;
 }
 ?>
@@ -105,12 +113,12 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
 
 <div class="col-lg-4 col-lg-offset-4">
 
-    <form method= "post" action="{{route('patient-create-appointment')}}">
+    <form method= "post" action="{{route('physician-create-appointment')}}">
         @csrf
         <div class="form-group">
-            <label for="date">Physician Permit Number</label>
-            <input class="form-control" type="text" name="doctor-id" value="<?php echo $doctorId?>" required>
-            <span class="error" style="color: red;"><?php echo $doctorErr;?></span>
+            <label for="date">Patient Health Card Number</label>
+            <input class="form-control" type="text" name="patient-id" value="<?php echo $patientId?>" required>
+            <span class="error" style="color: red;"><?php echo $patientErr;?></span>
         </div>
         <div class="form-group">
             <label for="date">Choose an Appointment Date</label>

@@ -25,26 +25,10 @@ class NurseController extends Controller implements GeneralUserController
        return redirect('/admin');
     }   
         else{
-            return redirect('/');
+            return redirect('/nurses');
         }
 
     }
 
-    public function loginNurse()
-    {
-        return view('login.nurse');
-    }
-
-    public function home()
-  {
-    return view('nurse');
-  }
-
-    public function logout()
-  {
-    Auth::guard('nurse')->logout();
-
-    return redirect('/login/nurse'); 
-  }
 
 } 

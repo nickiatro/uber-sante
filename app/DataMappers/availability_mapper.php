@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 use App\Availability;
 class availability_mapper{
 
-    public function showAvailability($start_time){
-        $dt = new DateTime($start_time);
-        $date = $dt->format('Y-m-d');
-        $time1 = $date." 00:00:00";
-        $time2 = $date." 23:59:59";
-     return DB::table('availabilities')->whereBetween('start_time', [$time1, $time2])->get();
+    public function showAvailability($user){
+
+     return DB::table('availabilities')->where('physicianNumber', '=', $physicianNumber)->get();
     }
 
 	public function updateAvailability(Availability $availability){

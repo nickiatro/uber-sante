@@ -17,26 +17,52 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/doctor', function () {
+    return view('welcomePhysician');
+});
+
+Route::get('/nurses', function () {
+    return view('welcomeNurse');
+});
+
 Auth::routes();
 Route::view('/payment','payment');
 Route::view('/admin', 'admin');
 Route::view('/welcome', 'welcome');
+Route::view('/welcomePhysician', 'welcomePhysician');
+Route::view('/welcomeNurse', 'welcomeNurse');
 Route::view('/patient-create-appointment','patient-create-appointment');
+Route::view('/physician-create-appointment','physician-create-appointment');
+Route::view('/createAvailability','createAvailability');
+Route::view('/myAvailabilities','myAvailabilities');
 Route::view('/addToCart', 'addToCart');
+Route::view('/addToCartPhysician', 'addToCartPhysician');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/view', 'view');
+Route::view('/viewPhysician', 'viewPhysician');
 Route::view('/help', 'help');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/login/physician', 'Auth\LoginController@showLoginForm');
-Route::post('/login/physician', 'Auth\LoginController@validateLoginPhysicians')->name('login.physician');
+Route::get('/physician/login', 'Auth\physicianLoginController@showLoginForm')->name('physician.login');
+Route::post('/physician/login', 'Auth\physicianLoginController@login')->name('physician.login.post');
+Route::post('/physician/logout', 'Auth\physicianLoginController@logout')->name('physician.logout');
 
-Route::get('/login/nurse', 'Auth\LoginController@showLoginForm');
-Route::post('/login/nurse', 'Auth\LoginController@validateLoginNurses')->name('login.nurse');
+Route::group(['middleware'=>'physician'], function() {
+    Route::get('/physician/home', 'physician\HomeController@index');
+});
+
+Route::get('/nurse/login', 'Auth\nurseLoginController@showLoginForm')->name('nurse.login');
+Route::post('/nurse/login', 'Auth\nurseLoginController@login')->name('nurse.login.post');
+Route::post('/nurse/logout', 'Auth\nurseLoginController@logout')->name('nurse.logout');
+
+Route::group(['middleware'=>'nurse'], function() {
+    Route::get('/nurse/home', 'nurse\HomeController@index');
+});
+
 
 Route::get('/view', 'ViewController@index')->name('view');
 
@@ -55,10 +81,23 @@ Route::post('patient-create-appointment', function() {
     return view('patient-create-appointment');
 })->name('patient-create-appointment');
 
+Route::post('physician-create-appointment', function() {
+    return view('physician-create-appointment');
+})->name('physician-create-appointment');
+
+Route::post('createAvailability', function() {
+    return view('createAvailability');
+})->name('createAvailability');
+
 Route::get('/addAppointmentToCart/{appointment}', 'BookAppointmentsController@addAppointmentToCart')->name('appointment.addToCart');
 Route::get('/removeAppointmentFromCart{appointmentId}','BookAppointmentsController@removeAppointmentFromCart')->name('appointment.removeFromCart');
 Route::get('/cancelTransaction','BookAppointmentsController@cancelTransaction')->name('appointment.cancelTransaction');
+Route::get('/removeAvailability','AvailabilityController@removeAvailability')->name('availability.removeAvailability');
+
+
+Route::get('/cancelTransaction','BookAppointmentsController@cancelTransactionPhysician')->name('appointment.cancelTransactionPhysician');
 Route::get('/cancelAppointment/{appointmentId}','BookAppointmentsController@cancelAppointment')->name('appointment.cancelAppointment');
 Route::get('/checkoutCart','BookAppointmentsController@checkoutCart')->name('appointment.checkoutCart');
+Route::get('/checkoutCart','BookAppointmentsController@checkoutCartPhysician')->name('appointment.checkoutCartPhysician');
 Route::get('/updateAppointment{appointment}','BookAppointmentsController@updateAppointment')->name('appointment.updateAppointment');
 
