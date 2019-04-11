@@ -23,7 +23,7 @@ public static function showAppointments(){
 public static function showAppointmentsPhysician(){
 
     $aMap = new bookAppointments_mapper();
-    $appointments = $aMap->showAppointments(Auth::user()->physicianNumber);
+    $appointments = $aMap->showAppointments(auth('physician')->user()->physicianNumber);
     return $appointments;
 
 }
@@ -32,6 +32,13 @@ public static function getCartContent($user){
 
     $aMap = new bookAppointments_mapper();
     $appointments = $aMap->getCartContent($user);
+    return $appointments;
+}
+
+public static function getCartContentPhysician($user){
+
+    $aMap = new bookAppointments_mapper();
+    $appointments = $aMap->getCartContentPhysician($user);
     return $appointments;
 }
 

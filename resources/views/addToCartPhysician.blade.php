@@ -11,7 +11,7 @@
 use App\Http\Controllers\BookAppointmentsController;
 
 $appointments = BookAppointmentsController::showAppointmentsPhysician();
-$cart = BookAppointmentsController::getCartContentPhysician(Auth::user()->physicianNumber);
+$cart = BookAppointmentsController::getCartContentPhysician(auth('physician')->user()->physicianNumber);
 
 ?>
 
