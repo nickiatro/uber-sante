@@ -60,7 +60,7 @@ else if ($MediSys == "selected"){
 if (array_key_exists("assign-button", $_POST)) {
     DB::table('clinic')->insert([
         'clinic_id' => $clinic_id,
-        'physicianNumber' => Auth::guard('physician')->user()->physicianNumber
+        'accessId' => Auth::guard('nurse')->user()->accessId
 
     ]);
     exit;
@@ -77,7 +77,7 @@ if (array_key_exists("assign-button", $_POST)) {
                 <div class="card-header">{{ __('Select Clinic') }}</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ route('assignPhysicianToClinic')}}">
+                    <form method="post" action="{{ route('assignNurseToClinic')}}">
                         @csrf
 
                         <div class="form-group row">

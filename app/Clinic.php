@@ -14,8 +14,7 @@ class Clinic
      * @var array
      */
     protected $fillable = [
-        'clinic_id', 'physicianNumber'
-        //, 'accessId'
+        'clinic_id', 'physicianNumber', 'accessId'
     ];
 
     public $timestamps = true;

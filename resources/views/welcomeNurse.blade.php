@@ -110,8 +110,12 @@
 				<a href="addToCart"> Appointment Cart</a>
 
 			</div>
-                	<div class="links">
+            <div class="links">
 				<a href="view">My Appointments</a>
+			</div>
+
+            <div class="links">
+				<a href="clinicInfoNurse">Clinic</a>
 			</div>
 
                     @else

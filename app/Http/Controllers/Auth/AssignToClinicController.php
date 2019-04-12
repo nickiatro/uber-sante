@@ -14,17 +14,12 @@ use App\Clinic;
 
 class AssignToClinicController extends Controller
 {
-
-    public function showClinicForm()
-    {
-        return view('clinicInfo');
-    }
-
+    
     public static function assignPhysicianToClinic($clinic_id){
 
 
     $cMap = new clinic_mapper();
-    $cMap->assignToClinic($clinic_id);
+    $cMap->assignPhysicianToClinic($clinic_id);
 
     
     }

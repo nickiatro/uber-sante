@@ -16,14 +16,14 @@ class CreateClinicsTable extends Migration
         Schema::create('clinic', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('physicianNumber')->unsigned()->nullable();
-            //$table->string('accessId')->unsigned()->nullable();
+            $table->string('accessId')->unsigned()->nullable();
             $table->integer('clinic_id');
             $table->timestamps();
         });
 
         Schema::table('clinic', function($table){
             $table->foreign('physicianNumber')->references('physicianNumber')->on('physicians');
-            //$table->foreign('accessId')->references('accessId')->on('nurses');
+            $table->foreign('accessId')->references('accessId')->on('nurses');
         
         });
     }
