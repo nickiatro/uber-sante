@@ -85,6 +85,21 @@
       </div>
     </div>
   </div>
+
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Why can't I book an appointment at any given time?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+     	The physicians only work between certain hours and the clinic isn't open 24/7.
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection
