@@ -90,16 +90,58 @@ if ($times == "") {
     $times = "<option>Choose Another Date</option>";
 }
 
+$clinic_id = 0;
+
+$Medistat = $Super = $Alpha = $Diamant = $MediSys = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (($_POST["clinic_id"]) == "1") {
+        $Medistat = "selected";
+    }
+    else if (($_POST["clinic_id"]) == "2") {
+        $Super = "selected";
+    }
+    else if (($_POST["clinic_id"]) == "3") {
+        $Alpha = "selected";
+    }
+
+    else if (($_POST["clinic_id"]) == "4") {
+        $Diamant = "selected";
+    }
+
+
+    else if (($_POST["clinic_id"]) == "5") {
+        $MediSys = "selected";
+    }
+
+}
+
+if ($Medistat == "selected"){
+    $clinic_id = 1;
+}
+else if ($Super == "selected"){
+    $clinic_id = 2;
+}
+else if ($Alpha == "selected"){
+    $clinic_id = 3;
+}
+else if ($Diamant == "selected"){
+    $clinic_id = 4;
+}
+else if ($MediSys == "selected"){
+    $clinic_id = 5;
+}
 
 if (array_key_exists("add-to-cart-button", $_POST)) {
     date_default_timezone_set('America/Toronto');
     DB::table('cart_appointments')->insert(  [
-        'clinic_id' => 1,
+        'clinic_id' => $clinic_id,
         'start_time' => $date . " " . $_POST["times"],
         'duration' => $duration,
         'healthCard' => $patientId,
         'physicianNumber' => Auth::guard('physician')->user()->physicianNumber,
-        'room_id' => 1,
+        'room_id' => rand(1,5),
         'created_at' => date('Y-m-d H:i:s'),
         'updated_at' => date('Y-m-d H:i:s')]);
     header("Location: /addToCartPhysician");
@@ -134,6 +176,23 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
           </select>
             <span class="error" style="color: red;"><?php echo $typeErr;?></span>
         </div>
+        <div class="form-group">
+        <label for="clinic_id">Select the Clinic</label>
+                                <select id="clinic_id" class="form-control" 
+                                name="clinic_id" required>
+                                    <option value="1"<?php echo $Medistat;?>>Medistat</option>
+                                    <option value="2"<?php echo $Super;?>>Super-Clinic</option>
+                                    <option value="3"<?php echo $Alpha;?>>Alpha Clinic</option>
+                                    <option value="4"<?php echo $Diamant;?>>Diamant Clinic</option>
+                                    <option value="5"<?php echo $MediSys;?>>MediSys</option>
+                                </select>
+
+                                @if ($errors->has('clinic_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('clinic_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
         <div class="form-group">
         <input type="submit" id="search-button" class="btn btn-primary" value="Search">
         </div>

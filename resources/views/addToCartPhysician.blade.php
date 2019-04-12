@@ -43,7 +43,7 @@ $cart = BookAppointmentsController::getCartContentPhysician(Auth::guard('physici
             
                 <td>
                 <a class="btn btn-primary">Modify</a>
-                <a href="{{route('appointment.cancelTransactionPhysician')}}" class="btn btn-primary">Cancel</a>
+                <a href="{{route('appointment.removeFromCart', ['appointmentId'=> $c->id ])}}" class="btn btn-primary">Cancel</a>
                 </td>
             </tr>
             @endforeach
