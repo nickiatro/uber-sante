@@ -65,10 +65,9 @@ public static function addAppointmentToCart($appointment_id){
 
 public static function removeAppointmentFromCart($appointment_id){
 
-    if (Auth::user()->admin_privilege == "0"){
+
         $aMap = new bookAppointments_mapper();
         $aMap->removeAppointmentFromCart($appointment_id);
-        }
     
         return redirect()->back();
 
@@ -83,10 +82,10 @@ public static function cancelTransaction(){
 }
 
 public static function cancelTransactionPhysician(){
-    if (Auth::guard('physician')->user()->admin_privilege == "0") {
+
     $aMap = new bookAppointments_mapper();
     $aMap->cancelTransaction(Auth::guard('physician')->user()->physicianNumber);
-}
+
     return redirect()->back();
 }
 
