@@ -21,7 +21,7 @@
 
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        A user must be registered on the system in order to book a doctor visit.
+        <center>A user must be registered on the system in order to book a doctor visit.</center>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
     </div>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
       <div class="card-body">
-      The system accepts a patient who (over 18 years old)
+      <center>The system accepts a patient who (over 18 years old)</center>
       </div>
     </div>
   </div>
@@ -51,7 +51,7 @@
     </div>
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
       <div class="card-body">
-      Verify that the email hasn't been used previously to register
+      <center>Verify that the email hasn't been used previously to register</center>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
     </div>
     <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
       <div class="card-body">
-      No worries! Click on the "I forgot my password" link under login, enter your email, and an email containing your password will be sent to you shortly.
+      <center>No worries! Click on the "I forgot my password" link under login, enter your email, and an email containing your password will be sent to you shortly.</center>
       </div>
     </div>
   </div>
@@ -81,7 +81,22 @@
     </div>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
       <div class="card-body">
-      Yes.
+      <center>Yes.</center>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="headingSix">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+          Why can't I book an appointment at any given time?
+        </button>
+      </h5>
+    </div>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordion">
+      <div class="card-body">
+     	<center>The physicians only work between certain hours and the clinic isn't open 24/7.</center>
       </div>
     </div>
   </div>

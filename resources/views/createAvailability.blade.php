@@ -30,6 +30,7 @@ if(!isset($_SESSION)){
 <?php
 $typeErr = $dateErr = $timeErr= "";
 $walkIn = $annual  = $date = "";
+$time = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (($_POST["date"]) == null) {
@@ -70,9 +71,6 @@ else if ($annual == "selected") {
     $duration = 60;
 }
 
-$time = "";
-
-
 if (array_key_exists("add-to-cart-button", $_POST)) {
     DB::table('availabilities')->insert(  [
         'physicianNumber' => Auth::guard('physician')->user()->physicianNumber,
@@ -82,8 +80,10 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         'updated_at' => date('Y-m-d H:i:s')]);
     header("Location: /myAvailabilities");
     exit;
+	
 }
 ?>
+
 @section('content')
 <h1 id="header" class="text-center">
     Create Availabilities
@@ -97,23 +97,28 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
 
     <form method= "post" action="{{route('createAvailability')}}">
         @csrf
-       
         <div class="form-group">
         <label for="date">Choose an Appointment Date</label>
             <input class="form-control" type="date" id="date" name="date" 
-            min="<?php date_default_timezone_set('America/Toronto'); 
-            echo date("Y-m-d");?>" value="<?php echo $date;?>" required>
-            <span class="error" style="color:red;"><?php echo $dateErr;?></span>
+				min="<?php date_default_timezone_set('America/Toronto'); echo date("Y-m-d");?>"
+				max='2030-12-31'
+				value="<?php echo $date;?>" required
+			>
+            <span class="error" style="color:red;">
+				<?php echo $dateErr;?>
+			</span>
         </div>
-
         <div>
-            <label for="times">Select Appointment Time</label>
+        <label for="times">Select Appointment Time</label>
             <input class="form-control" value="08:00" type="time" id="times" name="times" 
-            min="<?php  
-            echo date("H:i");?>" value="<?php echo $time;?>" required>
-            <span class="error" style="color:red;"><?php echo $timeErr;?></span>
+				min="08:00"
+				max="16:00"			
+				value= "<?php echo $time;?>" required
+			>		
+            <span class="error" style="color:red;">
+				<?php echo $timeErr;?>
+			</span>
         </div>
-
         <div class="form-group">
           <label for="appointment-type">Select the Appointment Type</label>
           <select class="form-control" id="appointment-type" name="appointment-type" required>
