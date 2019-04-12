@@ -60,7 +60,12 @@ else if ($MediSys == "selected"){
 
 
 if (array_key_exists("assign-button", $_POST)) {
-    DB::table('clinic')->update([
+
+    if (DB::table('clinic')->where('accessId','=', Auth::guard('nurse')->user()->accessId)->count() > 0) {
+        DB::table('clinic')->where('accessId','=', Auth::guard('nurse')->user()->accessId)->delete();
+        
+     }
+    DB::table('clinic')->insert([
         'clinic_id' => $clinic_id,
         'accessId' => Auth::guard('nurse')->user()->accessId
 

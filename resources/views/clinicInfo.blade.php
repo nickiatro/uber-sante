@@ -9,8 +9,10 @@ if(!isset($_SESSION)){
     }
 
 ?>
+<!doctype html>
+<html>
 
-
+<body>
 <?php
 
 $clinic_id = 0;
@@ -58,6 +60,12 @@ else if ($MediSys == "selected"){
 
 
 if (array_key_exists("assign-button", $_POST)) {
+
+    if (DB::table('clinic')->where('physicianNumber','=', Auth::guard('physician')->user()->physicianNumber)->count() > 0) {
+        DB::table('clinic')->where('physicianNumber','=', Auth::guard('physician')->user()->physicianNumber)->delete();
+        
+     }
+
     DB::table('clinic')->insert([
         'clinic_id' => $clinic_id,
         'physicianNumber' => Auth::guard('physician')->user()->physicianNumber
@@ -85,7 +93,7 @@ if (array_key_exists("assign-button", $_POST)) {
                             <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Clinic') }}</label>
 
                             <div class="col-md-6">
-                                <select id="clinic_id" type="text" class="form-control" 
+                                <select id="clinic_id" class="form-control" 
                                 name="clinic_id" required>
                                     <option value="1"<?php echo $Medistat;?>>Medistat</option>
                                     <option value="2"<?php echo $Super;?>>Super-Clinic</option>
@@ -117,4 +125,6 @@ if (array_key_exists("assign-button", $_POST)) {
         </div>
     </div>
 </div>
+</body>
 @endsection
+</html>
