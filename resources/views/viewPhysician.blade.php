@@ -41,13 +41,13 @@ $appointments = BookAppointmentsController::showAppointmentsPhysician();
                 <td>{{$appointment->room_id}}</td>
 
                 <td><a class="btn btn-primary">Modify</a>
-                <a class="btn btn-primary" href="{{route('appointment.cancelAppointment')}}">Cancel</a></td>
+                <a class="btn btn-primary" href="{{route('appointment.cancelAppointment', ['appointmentId'=> $appointment->id ])}}">Cancel</a></td>
                 
                 </tr>
                 @endforeach
         </table>
 
-        <a class="btn btn-primary" href="{{route('patient-create-appointment')}}">Book Another Appointment</a>
+        <a class="btn btn-primary" href="{{route('physician-create-appointment')}}">Book Another Appointment</a>
 
         
     </div>

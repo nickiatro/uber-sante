@@ -2,10 +2,20 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
-class Clinic extends Model
+class Clinic
 {
-    // All attributes are mass assignable for now
-    protected $guarded = [];
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'clinic_id', 'physicianNumber', 'accessId'
+    ];
+
+    public $timestamps = true;
 }

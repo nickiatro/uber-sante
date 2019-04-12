@@ -13,15 +13,17 @@ class CreateClinicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clinics', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('name');
-            $table->timestamps();
+        Schema::create('clinic', function (Blueprint $table) {
+            $table->integer('physicianNumber')->unique()->unsigned()->nullable();
+            $table->string('accessId')->unique()->unsigned()->nullable();
+            $table->integer('clinic_id');
         });
 
-        DB::table('clinics')->insert([
-            'name' => 'Uber Sante Clinic'
-        ]);
+        Schema::table('clinic', function($table){
+            $table->foreign('physicianNumber')->references('physicianNumber')->on('physicians');
+            $table->foreign('accessId')->references('accessId')->on('nurses');
+        
+        });
     }
 
     /**
@@ -31,6 +33,6 @@ class CreateClinicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clinics');
+        Schema::dropIfExists('clinic');
     }
 }

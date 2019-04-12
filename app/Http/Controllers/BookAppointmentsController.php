@@ -24,7 +24,7 @@ public static function showAppointments(){
 public static function showAppointmentsPhysician(){
 
     $aMap = new bookAppointments_mapper();
-    $appointments = $aMap->showAppointments(Auth::guard('physician')->user()->physicianNumber);
+    $appointments = $aMap->showAppointmentsPhysician(Auth::guard('physician')->user()->physicianNumber);
     return $appointments;
 
 }
@@ -92,10 +92,10 @@ public static function cancelTransactionPhysician(){
 
 
 public static function cancelAppointment($appointmentId){
-    if (Auth::user()->admin_privilege == "0") {
+
     $aMap = new bookAppointments_mapper();
     $aMap->cancelAppointment($appointmentId);
-}
+
 return redirect()->back();
 }
 
@@ -108,10 +108,10 @@ public static function checkoutCart(){
 }
 
 public static function checkoutCartPhysician(){
-    if (Auth::guard('physician')->user()->admin_privilege == "0") {
+
     $aMap = new bookAppointments_mapper();
-    $aMap->checkoutCart(Auth::guard('physician')->user()->physicianNumber);
-}
+    $aMap->checkoutCartPhysician(Auth::guard('physician')->user()->physicianNumber);
+
     return redirect()->back();
 }
 
