@@ -111,9 +111,13 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         </div>
 
         <div>
-            <label for="times">Select Appointment Time</label>
+        <label for="times">Select Appointment Time</label>
             <input class="form-control" value="08:00" type="time" id="times" name="times" 
-            min="<?php echo date("H:i");?>" value= "<?php echo $time;?>" required>
+				min="08:00"
+				max="16:00"			
+				value= "<?php echo $time;?>" required
+			>
+			
             <span class="error" style="color:red;"><?php echo $timeErr;?></span>
         </div>
 
