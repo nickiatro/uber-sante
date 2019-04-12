@@ -104,14 +104,14 @@
 			<div class="middle-center links"></div>
 
 			<div class="links">
-				<a href="patient-create-appointment"> Book Appointment</a>
+				<a href="nurse-create-appointment"> Book Appointment</a>
 			</div>
 			<div class="links">
-				<a href="addToCart"> Appointment Cart</a>
+				<a href="addToCartNurse"> Appointment Cart</a>
 
 			</div>
             <div class="links">
-				<a href="view">My Appointments</a>
+				<a href="viewNurse">All Appointments</a>
 			</div>
 
             <div class="links">

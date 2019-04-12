@@ -29,6 +29,14 @@ public static function showAppointmentsPhysician(){
 
 }
 
+public static function showAppointmentsNurse(){
+
+    $aMap = new bookAppointments_mapper();
+    $appointments = $aMap->showAppointmentsNurse();
+    return $appointments;
+
+}
+
 public static function getCartContent($user){
 
     $aMap = new bookAppointments_mapper();
@@ -40,6 +48,13 @@ public static function getCartContentPhysician($user){
 
     $aMap = new bookAppointments_mapper();
     $appointments = $aMap->getCartContentPhysician($user);
+    return $appointments;
+}
+
+public static function getCartContentNurse(){
+
+    $aMap = new bookAppointments_mapper();
+    $appointments = $aMap->getCartContentNurse();
     return $appointments;
 }
 
@@ -89,6 +104,14 @@ public static function cancelTransactionPhysician(){
     return redirect()->back();
 }
 
+public static function cancelTransactionNurse(){
+
+    $aMap = new bookAppointments_mapper();
+    $aMap->cancelTransactionNurse();
+
+    return redirect()->back();
+}
+
 
 public static function cancelAppointment($appointmentId){
 
@@ -110,6 +133,14 @@ public static function checkoutCartPhysician(){
 
     $aMap = new bookAppointments_mapper();
     $aMap->checkoutCartPhysician(Auth::guard('physician')->user()->physicianNumber);
+
+    return redirect()->back();
+}
+
+public static function checkoutCartNurse(){
+
+    $aMap = new bookAppointments_mapper();
+    $aMap->checkoutCartNurse();
 
     return redirect()->back();
 }
