@@ -125,6 +125,182 @@ if (array_key_exists("assign-button", $_POST)) {
         </div>
     </div>
 </div>
+
+<?php
+
+$countPhysician1 = DB::table('clinic')->where('physicianNumber','!=',null)->where('clinic_id','=',1)->count();
+$countNurse1 = DB::table('clinic')->where('accessId','!=',null)->where('clinic_id','=',1)->count();
+
+$countPhysician2 = DB::table('clinic')->where('physicianNumber','!=',null)->where('clinic_id','=',2)->count();
+$countNurse2 = DB::table('clinic')->where('accessId','!=',null)->where('clinic_id','=',2)->count();
+
+$countPhysician3 = DB::table('clinic')->where('physicianNumber','!=',null)->where('clinic_id','=',3)->count();
+$countNurse3 = DB::table('clinic')->where('accessId','!=',null)->where('clinic_id','=',3)->count();
+
+$countPhysician4 = DB::table('clinic')->where('physicianNumber','!=',null)->where('clinic_id','=',4)->count();
+$countNurse4 = DB::table('clinic')->where('accessId','!=',null)->where('clinic_id','=',4)->count();
+
+$countPhysician5 = DB::table('clinic')->where('physicianNumber','!=',null)->where('clinic_id','=',5)->count();
+$countNurse5 = DB::table('clinic')->where('accessId','!=',null)->where('clinic_id','=',5)->count();
+
+
+?>
+
+<div class="container" style= "padding:20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header flip">{{ __('Medistat Clinic') }}</div>
+
+                    <div class="card-body panel" style="display: none">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of physicians:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countPhysician1 ?>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of nurses:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countNurse1 ?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
+<div class="container" style= "padding:20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header flip">{{ __('Super Clinic') }}</div>
+
+                    <div class="card-body panel" style="display: none">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of physicians:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countPhysician2 ?>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of nurses:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countNurse2 ?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
+<div class="container" style= "padding:20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header flip">{{ __('Alpha Clinic') }}</div>
+
+                    <div class="card-body panel" style="display: none">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of physicians:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countPhysician3 ?>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of nurses:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countNurse3 ?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
+<div class="container" style= "padding:20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header flip">{{ __('Diamant Clinic') }}</div>
+
+                    <div class="card-body panel" style="display: none">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of physicians:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countPhysician4 ?>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of nurses:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countNurse4 ?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
+<div class="container" style= "padding:20px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header flip">{{ __('MediSys Clinic') }}</div>
+
+                    <div class="card-body panel" style="display: none">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of physicians:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countPhysician5 ?>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="clinic_id" class="col-md-4 col-form-label text-md-right">{{ __('Number of nurses:') }}</label>
+
+                            <div class="col-md-6">
+                            <?php echo $countNurse5 ?>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
 </body>
 @endsection
 </html>
