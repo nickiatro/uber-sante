@@ -47,7 +47,7 @@ $appointments = BookAppointmentsController::showAppointmentsPhysician();
                 @endforeach
         </table>
 
-        <a class="btn btn-primary" href="{{route('patient-create-appointment')}}">Book Another Appointment</a>
+        <a class="btn btn-primary" href="{{route('physician-create-appointment')}}">Book Another Appointment</a>
 
         
     </div>
