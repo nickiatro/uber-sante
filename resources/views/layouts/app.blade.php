@@ -36,7 +36,7 @@
                 @endauth
 
                 @auth('nurse')
-                <a class="navbar-brand" href="{{ url('/nurses') }}">
+                <a class="navbar-brand" style="color:#3490dc" href="{{ url('/nurses') }}">
                     {{ config('app.name', 'Uber Santé') }}
                 </a>
                 @endauth
