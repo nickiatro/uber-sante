@@ -122,6 +122,10 @@
 				<a href="viewPhysician">My Appointments</a>
 			</div>
 
+            <div class="links">
+				<a href="clinicInfo">Clinic</a>
+			</div>
+
                     @else
                         <div class="links">
 				<a href="{{ route('login') }}">Login</a>
