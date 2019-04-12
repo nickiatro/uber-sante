@@ -63,6 +63,7 @@ if (array_key_exists("assign-button", $_POST)) {
         'physicianNumber' => Auth::guard('physician')->user()->physicianNumber
 
     ]);
+    header("Location: /clinicInfo");
     exit;
 }
 
