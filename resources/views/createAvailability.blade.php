@@ -101,16 +101,19 @@ if (array_key_exists("add-to-cart-button", $_POST)) {
         <div class="form-group">
         <label for="date">Choose an Appointment Date</label>
             <input class="form-control" type="date" id="date" name="date" 
-            min="<?php date_default_timezone_set('America/Toronto'); 
-            echo date("Y-m-d");?>" value="<?php echo $date;?>" required>
-            <span class="error" style="color:red;"><?php echo $dateErr;?></span>
+				min="<?php date_default_timezone_set('America/Toronto'); echo date("Y-m-d");?>"
+				max='2030-12-31'
+				value="<?php echo $date;?>" required
+			>
+            <span class="error" style="color:red;">
+				<?php echo $dateErr;?>
+			</span>
         </div>
 
         <div>
             <label for="times">Select Appointment Time</label>
             <input class="form-control" value="08:00" type="time" id="times" name="times" 
-            min="<?php  
-            echo date("H:i");?>" value="<?php echo $time;?>" required>
+            min="<?php echo date("H:i");?>" value= "<?php echo $time;?>" required>
             <span class="error" style="color:red;"><?php echo $timeErr;?></span>
         </div>
 
