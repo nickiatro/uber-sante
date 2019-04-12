@@ -92,10 +92,10 @@ public static function cancelTransactionPhysician(){
 
 
 public static function cancelAppointment($appointmentId){
-    if (Auth::user()->admin_privilege == "0") {
+
     $aMap = new bookAppointments_mapper();
     $aMap->cancelAppointment($appointmentId);
-}
+
 return redirect()->back();
 }
 

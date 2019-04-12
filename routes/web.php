@@ -95,6 +95,10 @@ Route::post('physician-create-appointment', function() {
     return view('physician-create-appointment');
 })->name('physician-create-appointment');
 
+Route::post('createAvailability', function() {
+    return view('createAvailability');
+})->name('createAvailability');
+
 Route::post('assignPhysicianToClinic', function() {
     return view('clinicInfo');
 })->name('assignPhysicianToClinic');
