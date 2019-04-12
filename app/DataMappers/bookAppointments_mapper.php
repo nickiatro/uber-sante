@@ -14,6 +14,10 @@ class bookAppointments_mapper{
         return DB::table('cart_appointments')->where('physicianNumber', $user)->get();
     }
 
+    public function getCartContentNurse(){
+        return DB::table('cart_appointments')->get();
+    }
+
     public static function getAllAppointments($user){
     	return DB::table('appointments')->where('id', $id)->get();
     }
@@ -43,6 +47,10 @@ class bookAppointments_mapper{
     return DB::table('appointments')->where('physicianNumber', '=', $physicianNumber)->get();
    }
 
+   public function showAppointmentsNurse(){
+    return DB::table('appointments')->get();
+   }
+
    public function cancelTransaction($healthCard){
        DB::table('cart_appointments')->where('healthCard','=', $healthCard)->delete();
     }
@@ -50,6 +58,11 @@ class bookAppointments_mapper{
     public function cancelTransactionPhysician($physicianNumber){
         DB::table('cart_appointments')->where('physicianNumber','=', $physicianNumber)->delete();
     }
+
+    public function cancelTransactionNurse(){
+        DB::table('cart_appointments')->delete();
+    }
+
 
 
 public function cancelAppointment($appointmentId){
@@ -106,6 +119,25 @@ public function updateAppointment($appointment){
    }
 
    DB::table('cart_appointments')->where('physicianNumber','=' , $physicianNumber)->truncate();
+}
+
+public function checkoutCartNurse(){
+    $cart = DB::table('cart_appointments')->get();
+
+   foreach ($cart as $c) {
+       DB::table('appointments')->insert([
+           'clinic_id' => $c->clinic_id,
+           'start_time' => $c->start_time,
+           'duration' => $c->duration,
+           'healthCard' => $c->healthCard,
+           'physicianNumber' => $c->physicianNumber,
+           'room_id' => $c->room_id,
+           'created_at' => $c->created_at,
+           'updated_at' => $c->updated_at
+       ]);
+   }
+
+   DB::table('cart_appointments')->truncate();
 }
 
    }

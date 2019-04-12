@@ -32,6 +32,7 @@ Route::view('/welcome', 'welcome');
 Route::view('/welcomePhysician', 'welcomePhysician');
 Route::view('/welcomeNurse', 'welcomeNurse');
 Route::view('/patient-create-appointment','patient-create-appointment');
+Route::view('/nurse-create-appointment','nurse-create-appointment');
 Route::view('/patient-modify-appointment','patient-modify-appointment');
 Route::view('/physician-create-appointment','physician-create-appointment');
 Route::view('/createAvailability','createAvailability');
@@ -40,11 +41,13 @@ Route::view('/clinicInfoNurse','clinicInfoNurse');
 Route::view('/myAvailabilities','myAvailabilities');
 Route::view('/addToCart', 'addToCart');
 Route::view('/addToCartPhysician', 'addToCartPhysician');
+Route::view('/addToCartNurse', 'addToCartNurse');
 Route::get('admin/update/{user}', 'UserController@update')->name('user.update');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::view('/view', 'view');
 Route::view('/viewPhysician', 'viewPhysician');
+Route::view('/viewNurse', 'viewNurse');
 Route::view('/help', 'help');
 Auth::routes();
 
@@ -87,13 +90,14 @@ Route::post('patient-create-appointment', function() {
 Route::post('patient-modify-appointment', function() {
     return view('patient-modify-appointment');
 })->name('patient-modify-appointment');
-Route::post('physician-create-appointment', function() {
-    return view('physician-create-appointment');
-})->name('physician-create-appointment');
 
 Route::post('physician-create-appointment', function() {
     return view('physician-create-appointment');
 })->name('physician-create-appointment');
+
+Route::post('nurse-create-appointment', function() {
+    return view('nurse-create-appointment');
+})->name('nurse-create-appointment');
 
 Route::post('createAvailability', function() {
     return view('createAvailability');
@@ -114,8 +118,10 @@ Route::get('/removeAvailability{availabilityId}','AvailabilityController@removeA
 
 
 Route::get('/cancelTransactionPhysician','BookAppointmentsController@cancelTransactionPhysician')->name('appointment.cancelTransactionPhysician');
+Route::get('/cancelTransactionNurse','BookAppointmentsController@cancelTransactionNurse')->name('appointment.cancelTransactionNurse');
 Route::get('/cancelAppointment/{appointmentId}','BookAppointmentsController@cancelAppointment')->name('appointment.cancelAppointment');
 Route::get('/checkoutCart','BookAppointmentsController@checkoutCart')->name('appointment.checkoutCart');
 Route::get('/checkoutCartPhysician','BookAppointmentsController@checkoutCartPhysician')->name('appointment.checkoutCartPhysician');
+Route::get('/checkoutCartNurse','BookAppointmentsController@checkoutCartNurse')->name('appointment.checkoutCartNurse');
 Route::get('/updateAppointment{appointment}','BookAppointmentsController@updateAppointment')->name('appointment.updateAppointment');
 
